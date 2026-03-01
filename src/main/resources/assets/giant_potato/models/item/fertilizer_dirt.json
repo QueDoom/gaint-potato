@@ -3,7 +3,7 @@
 	"credit": "Made with Blockbench",
 	"textures": {
 		"0": "giant_potato:item/farmland_moist",
-		"1": "giant_potato:item/dirt",
+		"1": "minecraft:block/dirt",
 		"2": "giant_potato:item/fertilizer_block_rays",
 		"particle": "giant_potato:item/farmland_moist"
 	},
