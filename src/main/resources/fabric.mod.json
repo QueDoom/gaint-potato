@@ -2,24 +2,27 @@
 	"schemaVersion": 1,
 	"id": "giant_potato",
 	"version": "${version}",
-	"name": "Gaint Potato",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"name": "Giant Potato",
+	"description": "A techy space-mod based on potatoes and agriculture",
 	"authors": [
-		"Me!"
+		"QueDoom"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://munhco.online/",
+		"sources": "https://github.com/QueDoom/gaint-potato"
 	},
 	"license": "CC0-1.0",
 	"icon": "assets/giant_potato/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"net.quedoon.giant_potato.GaintPotato"
+			"net.quedoon.giant_potato.GiantPotato"
 		],
 		"fabric-datagen": [
-			"net.quedoon.giant_potato.GaintPotatoDataGenerator"
+			"net.quedoon.giant_potato.GiantPotatoDataGenerator"
+		],
+		"client": [
+			"net.quedoon.giant_potato.GiantPotatoClient"
 		]
 	},
 	"mixins": [
