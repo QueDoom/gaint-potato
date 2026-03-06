@@ -2,6 +2,7 @@ package net.quedoon.giant_potato.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.minecraft.block.Blocks;
 import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.data.server.recipe.RecipeProvider;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
@@ -30,6 +31,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .criterion(hasItem(Items.POTATO), conditionsFromItem(Items.POTATO))
                 .group("tiller")
                 .offerTo(recipeExporter);
+
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModBlocks.MASH_BOWL)
                 .pattern("   ")
                 .pattern("S S")
@@ -37,6 +39,35 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .input('S', ItemTags.WOODEN_SLABS)
                 .criterion(hasItem(Items.OAK_SLAB), conditionsFromTag(ItemTags.WOODEN_SLABS))
                 .group("mash_bowl")
+                .offerTo(recipeExporter);
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.FERTILIZER_DIRT)
+                .input(ModItems.TILLER)
+                .input(Items.DIRT)
+                .input(Items.POISONOUS_POTATO)
+                .criterion(hasItem(ModItems.TILLER), conditionsFromItem(ModItems.TILLER))
+                .group("fertilizer_dirt")
+                .offerTo(recipeExporter);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.SMOOTH_POTATOES, 8)
+                .pattern("SSS")
+                .pattern("SFS")
+                .pattern("SSS")
+                .input('S', Blocks.SMOOTH_STONE)
+                .input('F', ModItems.FERTILIZER_DIRT)
+                .criterion(hasItem(Blocks.SMOOTH_STONE), conditionsFromItem(Blocks.SMOOTH_STONE))
+                .group("smooth_potatoes")
+                .offerTo(recipeExporter);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Items.IRON_GOLEM_SPAWN_EGG)
+                .pattern("III")
+                .pattern("IFI")
+                .pattern("SSS")
+                .input('S', ModBlocks.SMOOTH_POTATOES)
+                .input('F', ModItems.FERTILIZER_DIRT)
+                .input('I', Items.IRON_INGOT)
+                .criterion(hasItem(ModItems.FERTILIZER_DIRT), conditionsFromItem(ModItems.FERTILIZER_DIRT))
+                .group("foundry")
                 .offerTo(recipeExporter);
     }
 }
