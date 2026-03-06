@@ -15,10 +15,12 @@ public class ModItemGroups {
 
     public static final ItemGroup GIANT_POTATO_GROUP = Registry.register(Registries.ITEM_GROUP,
             Identifier.of(net.quedoon.giant_potato.GiantPotato.MOD_ID, "giant_potato"),
-            FabricItemGroup.builder().displayName(Text.translatable("itemGroup.giant_potaot"))
+            FabricItemGroup.builder().displayName(Text.translatable("itemGroup.giant_potato"))
                     .icon(() -> new ItemStack(ModItems.TILLER)).entries((displayContext, entries) -> {
                         entries.add(ModBlocks.MASH_BOWL);
                         entries.add(ModItems.TILLER);
+                        entries.add(ModItems.FERTILIZER_DIRT);
+                        entries.add(ModBlocks.FOUNDRY);
                             }
                     ).build());
 

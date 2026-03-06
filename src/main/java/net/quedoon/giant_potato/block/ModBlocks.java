@@ -2,6 +2,7 @@ package net.quedoon.giant_potato.block;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.SlabBlock;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
@@ -9,6 +10,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.quedoon.giant_potato.GiantPotato;
+import net.quedoon.giant_potato.block.custom.FoundryBlock;
 import net.quedoon.giant_potato.block.custom.MashBowlBlock;
 
 public class ModBlocks {
@@ -16,6 +18,17 @@ public class ModBlocks {
     public static final Block MASH_BOWL = registerBlock("mash_bowl",
             new MashBowlBlock(AbstractBlock.Settings.create().sounds(BlockSoundGroup.WOOD)
                     .strength(1.0f).resistance(1.0f)));
+    public static final Block SMOOTH_POTATOES = registerBlock("smooth_potatoes",
+            new Block(AbstractBlock.Settings.create().sounds(BlockSoundGroup.STONE)
+                    .strength(3.0F).resistance(3.0F).requiresTool()));
+    public static final Block SMOOTH_POTATOES_SLAB = registerBlock("smooth_potatoes_slab",
+            new SlabBlock(AbstractBlock.Settings.create().sounds(BlockSoundGroup.STONE)
+                    .strength(3.0F).resistance(3.0F).requiresTool()));
+
+    // Machines
+    public static final Block FOUNDRY = registerBlock("foundry",
+            new FoundryBlock(AbstractBlock.Settings.create().sounds(BlockSoundGroup.STONE)
+                    .strength(3.0F).resistance(3.0F).requiresTool()));
 
 
     private static Block registerBlock(String name, Block block) {
