@@ -52,15 +52,6 @@ public class FoundryBlock extends BlockWithEntity implements BlockEntityProvider
         }
     }
 
-    @Override
-    public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
-        BlockEntity blockEntity = world.getBlockEntity(pos);
-        if(blockEntity instanceof FoundryBlockEntity foundryBlockEntity) {
-            foundryBlockEntity.triggerAnim("closed_idle", "closed_idle");
-        }
-
-        super.onPlaced(world, pos, state, placer, itemStack);
-    }
 
     @Override
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
