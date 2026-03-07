@@ -36,6 +36,8 @@ public class FoundryBlockEntity extends BlockEntity implements Inventory, GeoBlo
     protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
         super.writeNbt(nbt, registryLookup);
         Inventories.writeNbt(nbt, inventory, registryLookup);
+        nbt.putInt("foundry.progress", progress);
+        nbt.putInt("foundry.maxProgress", maxProgress);
     }
 
     @Override
