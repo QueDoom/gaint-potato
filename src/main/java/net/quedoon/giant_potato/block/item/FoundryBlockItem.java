@@ -1,0 +1,53 @@
+package net.quedoon.giant_potato.block.item;
+
+import net.minecraft.block.Block;
+import net.minecraft.client.render.item.BuiltinModelItemRenderer;
+import net.minecraft.item.BlockItem;
+import net.quedoon.giant_potato.util.gecko.render.FoundryBlockItemRenderer;
+import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoItem;
+import software.bernie.geckolib.animatable.client.GeoRenderProvider;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animation.*;
+import software.bernie.geckolib.util.GeckoLibUtil;
+
+import java.util.function.Consumer;
+
+public class FoundryBlockItem extends BlockItem implements GeoItem {
+    AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
+
+    RawAnimation IDLE = RawAnimation.begin().thenLoop("is_open");
+
+    public FoundryBlockItem(Block block, Settings settings) {
+        super(block, settings);
+    }
+
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
+        controllerRegistrar.add(new AnimationController<>(this, this::isOpenAnimController));
+    }
+
+    protected <E extends FoundryBlockItem>PlayState isOpenAnimController(final AnimationState<E> state) {
+        return state.setAndContinue(IDLE);
+    }
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return cache;
+    }
+
+    @Override
+    public void createGeoRenderer(Consumer<GeoRenderProvider> consumer) {
+        consumer.accept(new GeoRenderProvider() {
+            private FoundryBlockItemRenderer renderer;
+
+            @Override
+            public BuiltinModelItemRenderer getGeoItemRenderer() {
+                if (this.renderer == null)
+                    this.renderer = new FoundryBlockItemRenderer();
+
+                return this.renderer;
+            }
+        });
+    }
+}
