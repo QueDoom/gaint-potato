@@ -10,6 +10,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.quedoon.giant_potato.GiantPotato;
+import net.quedoon.giant_potato.block.custom.CrusherBlock;
 import net.quedoon.giant_potato.block.custom.FoundryBlock;
 import net.quedoon.giant_potato.block.custom.MashBowlBlock;
 
@@ -26,9 +27,15 @@ public class ModBlocks {
                     .strength(3.0F).resistance(3.0F).requiresTool()));
 
     // Machines
-    public static final Block FOUNDRY = registerBlock("foundry",
+    public static final Block FOUNDRY = registerBlockWithoutItem("foundry",
             new FoundryBlock(AbstractBlock.Settings.create().sounds(BlockSoundGroup.STONE)
                     .strength(3.0F).resistance(3.0F).requiresTool()));
+    public static final Block CRUSHER = registerBlock("crusher",
+            new CrusherBlock(AbstractBlock.Settings.create().sounds(BlockSoundGroup.STONE)
+                    .strength(3.0f).resistance(3.0f).requiresTool()));
+    public static final Block CRUSHER_WHEEL = registerBlockWithoutItem("crusher_wheel",
+            new CrusherBlock(AbstractBlock.Settings.create().sounds(BlockSoundGroup.STONE)
+                    .strength(3.0f).resistance(3.0f).requiresTool()));
 
 
     private static Block registerBlock(String name, Block block) {

@@ -23,5 +23,7 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModBlocks.MASH_BOWL, "Mash Bowl");
         translationBuilder.add(ModBlocks.SMOOTH_POTATOES, "Smooth Potatoes");
         translationBuilder.add(ModBlocks.FOUNDRY, "Foundry");
+
+        translationBuilder.add("gui.giant_potato.foundry", "Alloying");
     }
 }

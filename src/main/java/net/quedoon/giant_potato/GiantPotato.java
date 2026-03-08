@@ -6,6 +6,8 @@ import net.quedoon.giant_potato.block.ModBlocks;
 import net.quedoon.giant_potato.block.entity.ModBlockEntities;
 import net.quedoon.giant_potato.item.ModItemGroups;
 import net.quedoon.giant_potato.item.ModItems;
+import net.quedoon.giant_potato.recipe.ModRecipes;
+import net.quedoon.giant_potato.screen.ModScreenHandlers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import software.bernie.geckolib.GeckoLib;
@@ -24,6 +26,8 @@ public class GiantPotato implements ModInitializer {
 		ModBlocks.registerModBlocks();
 		ModBlockEntities.registerBlockEntities();
 
+		ModScreenHandlers.registerScreenHandlers();
+		ModRecipes.registerRecipes();
 
 	}
 }

@@ -59,7 +59,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .group("smooth_potatoes")
                 .offerTo(recipeExporter);
 
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Items.IRON_GOLEM_SPAWN_EGG)
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModItems.FOUNDRY)
                 .pattern("III")
                 .pattern("IFI")
                 .pattern("SSS")
