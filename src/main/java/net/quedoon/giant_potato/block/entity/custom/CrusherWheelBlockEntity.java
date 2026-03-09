@@ -2,10 +2,8 @@ package net.quedoon.giant_potato.block.entity.custom;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.util.math.BlockPos;
 import net.quedoon.giant_potato.block.entity.ModBlockEntities;
-import software.bernie.geckolib.animatable.GeoAnimatable;
 import software.bernie.geckolib.animatable.GeoBlockEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.AnimatableManager;
@@ -20,7 +18,7 @@ public class CrusherWheelBlockEntity extends BlockEntity implements GeoBlockEnti
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
     public CrusherWheelBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.CRUSHING_WHEEL_BE, pos, state);
+        super(ModBlockEntities.CRUSHER_WHEEL_BE, pos, state);
     }
 
     @Override

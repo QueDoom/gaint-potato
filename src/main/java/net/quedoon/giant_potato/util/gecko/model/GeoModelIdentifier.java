@@ -1,4 +1,4 @@
-package net.quedoon.giant_potato.util.QueT;
+package net.quedoon.giant_potato.util.gecko.model;
 
 import net.minecraft.util.Identifier;
 import net.quedoon.giant_potato.GiantPotato;

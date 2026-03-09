@@ -20,7 +20,9 @@ public class ModItemGroups {
                         entries.add(ModBlocks.MASH_BOWL);
                         entries.add(ModItems.TILLER);
                         entries.add(ModItems.FERTILIZER_DIRT);
-                        entries.add(ModBlocks.FOUNDRY);
+                        entries.add(ModItems.FOUNDRY);
+                        entries.add(ModItems.CRUSHER_WHEEL);
+                        entries.add(ModBlocks.CRUSHER);
                             }
                     ).build());
 

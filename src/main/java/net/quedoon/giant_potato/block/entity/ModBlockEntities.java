@@ -16,9 +16,13 @@ public class ModBlockEntities {
             Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(GiantPotato.MOD_ID, "foundry_be"),
                     BlockEntityType.Builder.create(FoundryBlockEntity::new, ModBlocks.FOUNDRY).build(null));
 
-    public static final BlockEntityType<CrusherWheelBlockEntity> CRUSHING_WHEEL_BE =
-            Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(GiantPotato.MOD_ID, "crushing_wheel_be"),
-                    BlockEntityType.Builder.create(CrusherWheelBlockEntity::new, ModBlocks.CRUSHER_WHEEL).build(null));
+    public static final BlockEntityType<CrusherBlockEntity> CRUSHER_BE =
+            Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(GiantPotato.MOD_ID, "crusher_be"),
+                    BlockEntityType.Builder.create(CrusherBlockEntity::new, ModBlocks.CRUSHER_WHEEL).build(null));
+
+    public static final BlockEntityType<CrusherWheelBlockEntity> CRUSHER_WHEEL_BE =
+            Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(GiantPotato.MOD_ID, "crusher_wheel_be"),
+                    BlockEntityType.Builder.create(CrusherWheelBlockEntity::new, ModBlocks.CRUSHER).build(null));
 
 
     public static void registerBlockEntities() {

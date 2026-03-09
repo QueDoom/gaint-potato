@@ -51,8 +51,8 @@ public class FoundryScreen extends HandledScreen<FoundryScreenHandler> {
 
     private void renderProgressArrow(DrawContext context, int x, int y) {
         if(handler.isCrafting()){
-            context.drawTexture(PROGRESS_TEXTURE, x + 104, y + 36, 0, 0,
-                    handler.getScaledArrowProgress(), 12, 24, 12);
+            context.drawTexture(PROGRESS_TEXTURE, x + 102, y + 34, 0, 0,
+                    handler.getScaledArrowProgress(), 16, 24, 16);
         }
     }
 

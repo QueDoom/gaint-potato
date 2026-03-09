@@ -20,7 +20,7 @@ public class FoundryScreenHandler extends ScreenHandler {
     private final PropertyDelegate propertyDelegate;
     private final FoundryBlockEntity blockEntity;
 
-    protected FoundryScreenHandler(int syncId, PlayerInventory inventory, BlockPos pos) {
+    public FoundryScreenHandler(int syncId, PlayerInventory inventory, BlockPos pos) {
         this(syncId, inventory, inventory.player.getWorld().getBlockEntity(pos), new ArrayPropertyDelegate(3));
 
     }
@@ -35,8 +35,8 @@ public class FoundryScreenHandler extends ScreenHandler {
 
         this.addSlot(new Slot(inventory, 0, 42, 34));
         this.addSlot(new Slot(inventory, 1, 60, 34));
-        this.addSlot(new Slot(inventory, 2, 74, 34));
-        this.addSlot(new Slot(inventory, 3, 138, 34));
+        this.addSlot(new Slot(inventory, 2, 77, 34));
+        this.addSlot(new Slot(inventory, 3, 139, 35));
 
         addPlayerHotbar(playerInventory);
         addPlayerInventory(playerInventory);

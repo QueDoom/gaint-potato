@@ -35,12 +35,15 @@ import software.bernie.geckolib.animation.*;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.swing.text.html.Option;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class FoundryBlockEntity extends BlockEntity implements GeoBlockEntity, ExtendedScreenHandlerFactory<BlockPos>, ImplementedInventory {
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(4, ItemStack.EMPTY);
-    protected final Boolean active = Boolean.FALSE;
+    protected boolean active = Boolean.FALSE;
+    private boolean open = Boolean.FALSE;
+    private int openTimer = -1;
 
     private static final int INPUT_SLOT_0 = 0;
     private static final int INPUT_SLOT_1 = 1;
@@ -99,17 +102,22 @@ public class FoundryBlockEntity extends BlockEntity implements GeoBlockEntity, E
     protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
         super.writeNbt(nbt, registryLookup);
         Inventories.writeNbt(nbt, inventory, registryLookup);
-        nbt.putInt("foundry.progress", progress);
-        nbt.putInt("foundry.maxProgress", maxProgress);
-        nbt.putInt("foundry.mash", mash);
+        nbt.putInt("giant_potato.foundry.progress", progress);
+        nbt.putInt("giant_potato.foundry.maxProgress", maxProgress);
+        nbt.putInt("giant_potato.foundry.mash", mash);
+        nbt.putBoolean("giant_potato.foundry.open", open);
     }
 
     @Override
     protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
         Inventories.readNbt(nbt, inventory, registryLookup);
-        progress = nbt.getInt("foundry.progress");
-        maxProgress = nbt.getInt("foundry.maxProgress");
-       mash = nbt.getInt("foundry.mash");
+        progress = nbt.getInt("giant_potato.foundry.progress");
+        maxProgress = nbt.getInt("giant_potato.foundry.maxProgress");
+        mash = nbt.getInt("giant_potato.foundry.mash");
+        open = nbt.getBoolean("giant_potato.foundry.open");
+        if (this.open) {
+            this.triggerAnim("idle_open", "idle_open");
+        }
         super.readNbt(nbt, registryLookup);
     }
 
@@ -138,11 +146,23 @@ public class FoundryBlockEntity extends BlockEntity implements GeoBlockEntity, E
         return inventory.size();
     }
 
+    public void setOpen() {
+        this.open = true;
+        markDirty();
+    }
+
+    public boolean getOpen() {
+        return this.open;
+    }
+
+    public void setOpenTimer() {
+        this.openTimer = 30;
+    }
 
     /*
-    GECKOLIB STUFF
+        GECKOLIB STUFF
 
-     */
+         */
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
         controllerRegistrar.add((new AnimationController<>(this, "idle_closed", 0, state -> state.setAndContinue(IDLE_CLOSED))));
@@ -158,9 +178,17 @@ public class FoundryBlockEntity extends BlockEntity implements GeoBlockEntity, E
     // // // // // // // // //
 
     public void tick(World world, BlockPos pos, BlockState state) {
+        if (this.openTimer >= 0) {
+            this.open = this.openTimer == 0;
+            this.openTimer--;
+        }
+
+        if (!this.open) return;
         if (hasRecipe() && canInsertIntoOutputSlot()) {
             increaseCraftingProgress();
             markDirty(world, pos, state);
+
+            this.active = true;
 
             if (hasCraftingFinished()) {
                 craftItem();
@@ -168,7 +196,15 @@ public class FoundryBlockEntity extends BlockEntity implements GeoBlockEntity, E
             }
         } else {
             resetProgress();
+            this.active = false;
         }
+//        if (this.active) {
+//            this.triggerAnim("active", "active");
+//        } else {
+//            this.triggerAnim("idle_open", "idle_open");
+//        }
+
+
     }
 
     private void resetProgress() {
@@ -210,7 +246,7 @@ public class FoundryBlockEntity extends BlockEntity implements GeoBlockEntity, E
     }
 
     private Optional<RecipeEntry<FoundryRecipe>> getCurrentRecipe() {
-        List<ItemStack> input = List.of();
+        List<ItemStack> input = new ArrayList<>();
         for (int i = 0; i < INPUT_SLOTS; i++) {
             input.add(inventory.get(i));
         }

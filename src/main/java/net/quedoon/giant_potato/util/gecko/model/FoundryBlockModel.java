@@ -1,10 +1,7 @@
 package net.quedoon.giant_potato.util.gecko.model;
 
 import net.minecraft.util.Identifier;
-import net.quedoon.giant_potato.GiantPotato;
 import net.quedoon.giant_potato.block.entity.custom.FoundryBlockEntity;
-import net.quedoon.giant_potato.block.item.FoundryBlockItem;
-import net.quedoon.giant_potato.util.QueT.GeoModelIdentifier;
 import software.bernie.geckolib.model.GeoModel;
 
 public class FoundryBlockModel extends GeoModel<FoundryBlockEntity> {

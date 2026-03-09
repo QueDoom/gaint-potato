@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public record FoundryRecipe(ItemStack output, DefaultedList<Ingredient> ingredients) implements Recipe<FoundryRecipeInput> {
+public record FoundryRecipe(ItemStack output, DefaultedList<Ingredient> ingredients, int maxProgress) implements Recipe<FoundryRecipeInput> {
     @Override
     public DefaultedList<Ingredient> getIngredients() {
         return ingredients;
@@ -79,7 +79,8 @@ public record FoundryRecipe(ItemStack output, DefaultedList<Ingredient> ingredie
                                                 },
                                                 DataResult::success
                                         )
-                                        .forGetter(recipe -> recipe.ingredients)
+                                        .forGetter(recipe -> recipe.ingredients),
+                                Codec.INT.optionalFieldOf("time", 72).forGetter(recipe -> recipe.maxProgress)
                         )
                         .apply(instance, FoundryRecipe::new)
         );
@@ -102,7 +103,8 @@ public record FoundryRecipe(ItemStack output, DefaultedList<Ingredient> ingredie
             DefaultedList<Ingredient> defaultedList = DefaultedList.ofSize(i, Ingredient.EMPTY);
             defaultedList.replaceAll(empty -> Ingredient.PACKET_CODEC.decode(buf));
             ItemStack itemStack = ItemStack.PACKET_CODEC.decode(buf);
-            return new FoundryRecipe(itemStack, defaultedList);
+            int l = buf.readVarInt();
+            return new FoundryRecipe(itemStack, defaultedList, l);
         }
 
         private static void write(RegistryByteBuf buf, FoundryRecipe recipe) {
@@ -113,6 +115,8 @@ public record FoundryRecipe(ItemStack output, DefaultedList<Ingredient> ingredie
             }
 
             ItemStack.PACKET_CODEC.encode(buf, recipe.output);
+
+            buf.writeVarInt(recipe.maxProgress);
         }
     }
 }

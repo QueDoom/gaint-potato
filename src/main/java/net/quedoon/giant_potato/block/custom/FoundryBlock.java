@@ -86,16 +86,19 @@ public class FoundryBlock extends BlockWithEntity implements BlockEntityProvider
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         BlockEntity blockEntity = world.getBlockEntity(pos);
         if(blockEntity instanceof FoundryBlockEntity foundryBlockEntity) {
-            if (player.getMainHandStack().isOf(ModItems.TILLER)) {
-                foundryBlockEntity.triggerAnim("open", "open");
-                return ItemActionResult.SUCCESS;
-            } else {
+            if (foundryBlockEntity.getOpen()) {
                 if (!world.isClient()) {
                     NamedScreenHandlerFactory screenHandlerFactory = ((FoundryBlockEntity) world.getBlockEntity(pos));
                     if (screenHandlerFactory != null) {
                         player.openHandledScreen(screenHandlerFactory);
                         return ItemActionResult.SUCCESS;
                     }
+                }
+            } else {
+                if (player.getMainHandStack().isOf(ModItems.TILLER)) {
+                    foundryBlockEntity.triggerAnim("open", "open");
+                    foundryBlockEntity.setOpenTimer();
+                    return ItemActionResult.SUCCESS;
                 }
             }
         }
