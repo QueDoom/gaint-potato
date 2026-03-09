@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east,lit=false": {
+      "model": "giant_potato:block/foundry",
+      "y": 90
+    },
+    "facing=north,lit=false": {
+      "model": "giant_potato:block/foundry"
+    },
+    "facing=south,lit=false": {
+      "model": "giant_potato:block/foundry",
+      "y": 180
+    },
+    "facing=west,lit=false": {
+      "model": "giant_potato:block/foundry",
+      "y": 270
+    }
+  }
+}

@@ -114,6 +114,6 @@
     }
   },
   "textures": {
-    "particle": "giant_potato:item/foundry"
+    "particle": "giant_potato:block/foundry"
   }
 }

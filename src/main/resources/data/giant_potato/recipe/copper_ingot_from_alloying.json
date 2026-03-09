@@ -5,7 +5,7 @@
     {"item": "minecraft:orange_dye"}
   ],
   "result": {
-    "item": "minecraft:copper_ingot",
+    "id": "minecraft:copper_ingot",
     "count": 2
   }
 }
