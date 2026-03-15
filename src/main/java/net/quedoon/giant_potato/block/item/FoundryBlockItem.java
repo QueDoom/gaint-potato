@@ -13,6 +13,7 @@ import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.*;
 import software.bernie.geckolib.model.DefaultedBlockGeoModel;
 import software.bernie.geckolib.renderer.GeoItemRenderer;
+import software.bernie.geckolib.renderer.GeoRenderer;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.function.Consumer;
@@ -50,7 +51,7 @@ public class FoundryBlockItem extends BlockItem implements GeoItem {
                 if (this.renderer == null)
                     this.renderer = new FoundryBlockItemRenderer();
 
-                return this.renderer;
+                return GeoRenderProvider.super.getGeoItemRenderer();
             }
         });
     }

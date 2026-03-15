@@ -19,6 +19,22 @@ public class ModRecipes {
                     return "alloying";
                 }
             });
+    public static final RecipeSerializer<CrusherRecipe> CRUSHER_SERIALIZER = Registry.register(
+            Registries.RECIPE_SERIALIZER, Identifier.of(GiantPotato.MOD_ID, "crushing"), new CrusherRecipe.Serializer());
+    public static final RecipeType<CrusherRecipe> CRUSHER_TYPE = Registry.register(
+            Registries.RECIPE_TYPE, Identifier.of(GiantPotato.MOD_ID, "crushing"), new RecipeType<>() {
+                @Override
+                public String toString() {
+                    return "crushing";
+                }
+            });
+
+
+
+    public static final Identifier FOUNDRY_ID = Identifier.of(GiantPotato.MOD_ID, "alloying");
+    public static final Identifier CRUSHER_ID = Identifier.of(GiantPotato.MOD_ID, "crushing");
+    public static final Identifier ASSEMBLER_ID = Identifier.of(GiantPotato.MOD_ID, "assembling");
+    public static final Identifier PRESS_ID = Identifier.of(GiantPotato.MOD_ID, "pressing");
 
 
     public static void registerRecipes() {

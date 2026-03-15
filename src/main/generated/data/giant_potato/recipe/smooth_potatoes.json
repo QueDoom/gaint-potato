@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "smooth_potatoes",
+  "key": {
+    "F": {
+      "item": "giant_potato:fertilizer_dirt"
+    },
+    "S": {
+      "item": "minecraft:smooth_stone"
+    }
+  },
+  "pattern": [
+    "SSS",
+    "SFS",
+    "SSS"
+  ],
+  "result": {
+    "count": 8,
+    "id": "giant_potato:smooth_potatoes"
+  }
+}

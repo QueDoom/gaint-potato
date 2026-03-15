@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "fertilizer_dirt",
+  "ingredients": [
+    {
+      "item": "giant_potato:tiller"
+    },
+    {
+      "item": "minecraft:dirt"
+    },
+    {
+      "item": "minecraft:poisonous_potato"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "giant_potato:fertilizer_dirt"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "group": "tiller",
+  "ingredients": [
+    {
+      "item": "minecraft:diamond_hoe"
+    },
+    {
+      "item": "minecraft:poisonous_potato"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "giant_potato:tiller"
+  }
+}

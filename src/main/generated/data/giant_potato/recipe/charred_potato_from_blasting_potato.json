@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.2,
+  "group": "charred_potato",
+  "ingredient": {
+    "item": "minecraft:potato"
+  },
+  "result": {
+    "id": "giant_potato:charred_potato"
+  }
+}

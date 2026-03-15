@@ -1,0 +1,12 @@
+{
+  "type": "giant_potato:alloying",
+  "ingredients": [
+    {"tag": "c:ingots/steel"},
+    {"item": "minecraft:poisonous_potato"},
+    {"tag": "c:ingots/steel"}
+  ],
+  "result": {
+    "id": "giant_potato:poisonous_potato_alloy",
+    "count": 1
+  }
+}

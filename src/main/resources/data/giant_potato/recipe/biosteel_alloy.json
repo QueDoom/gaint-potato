@@ -1,0 +1,11 @@
+{
+  "type": "giant_potato:alloying",
+  "ingredients": [
+    {"tag": "c:ingots/iron"},
+    {"item": "giant_potato:charred_potato"}
+  ],
+  "result": {
+    "id": "giant_potato:biosteel_alloy",
+    "count": 1
+  }
+}

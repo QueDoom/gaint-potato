@@ -1,18 +1,18 @@
 {
   "variants": {
-    "facing=east,lit=false": {
-      "model": "giant_potato:block/foundry",
+    "facing=east": {
+      "model": "giant_potato:block/crusher",
       "y": 90
     },
-    "facing=north,lit=false": {
-      "model": "giant_potato:block/foundry"
+    "facing=north": {
+      "model": "giant_potato:block/crusher"
     },
-    "facing=south,lit=false": {
-      "model": "giant_potato:block/foundry",
+    "facing=south": {
+      "model": "giant_potato:block/crusher",
       "y": 180
     },
-    "facing=west,lit=false": {
-      "model": "giant_potato:block/foundry",
+    "facing=west": {
+      "model": "giant_potato:block/crusher",
       "y": 270
     }
   }

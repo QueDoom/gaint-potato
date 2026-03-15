@@ -11,6 +11,7 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.quedoon.giant_potato.GiantPotato;
 import net.quedoon.giant_potato.block.custom.CrusherBlock;
+import net.quedoon.giant_potato.block.custom.CrusherWheelBlock;
 import net.quedoon.giant_potato.block.custom.FoundryBlock;
 import net.quedoon.giant_potato.block.custom.MashBowlBlock;
 
@@ -34,7 +35,7 @@ public class ModBlocks {
             new CrusherBlock(AbstractBlock.Settings.create().sounds(BlockSoundGroup.STONE)
                     .strength(3.0f).resistance(3.0f).requiresTool()));
     public static final Block CRUSHER_WHEEL = registerBlockWithoutItem("crusher_wheel",
-            new CrusherBlock(AbstractBlock.Settings.create().sounds(BlockSoundGroup.STONE)
+            new CrusherWheelBlock(AbstractBlock.Settings.create().sounds(BlockSoundGroup.STONE)
                     .strength(3.0f).resistance(3.0f).requiresTool()));
 
 

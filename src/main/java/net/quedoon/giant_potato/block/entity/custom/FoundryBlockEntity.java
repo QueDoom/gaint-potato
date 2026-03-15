@@ -7,7 +7,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
@@ -34,7 +33,6 @@ import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.*;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -106,6 +104,7 @@ public class FoundryBlockEntity extends BlockEntity implements GeoBlockEntity, E
         nbt.putInt("giant_potato.foundry.maxProgress", maxProgress);
         nbt.putInt("giant_potato.foundry.mash", mash);
         nbt.putBoolean("giant_potato.foundry.open", open);
+        nbt.putBoolean("giant_potato.foundry.active", active);
     }
 
     @Override
@@ -115,9 +114,9 @@ public class FoundryBlockEntity extends BlockEntity implements GeoBlockEntity, E
         maxProgress = nbt.getInt("giant_potato.foundry.maxProgress");
         mash = nbt.getInt("giant_potato.foundry.mash");
         open = nbt.getBoolean("giant_potato.foundry.open");
-        if (this.open) {
-            this.triggerAnim("idle_open", "idle_open");
-        }
+        active = nbt.getBoolean("giant_potato.foundry.active");
+
+        updateListeners(false);
         super.readNbt(nbt, registryLookup);
     }
 
@@ -151,6 +150,14 @@ public class FoundryBlockEntity extends BlockEntity implements GeoBlockEntity, E
         markDirty();
     }
 
+    private void updateListeners(boolean markDirty) {
+        if (markDirty) markDirty();
+        if (world != null) {
+            world.updateListeners(pos, getCachedState(), getCachedState(), 3);
+        }
+    }
+
+
     public boolean getOpen() {
         return this.open;
     }
@@ -165,9 +172,21 @@ public class FoundryBlockEntity extends BlockEntity implements GeoBlockEntity, E
          */
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
-        controllerRegistrar.add((new AnimationController<>(this, "idle_closed", 0, state -> state.setAndContinue(IDLE_CLOSED))));
-        controllerRegistrar.add((new AnimationController<>(this, "idle_open", 0, state -> PlayState.STOP).triggerableAnim("idle_open", IDLE_OPEN)));
-        controllerRegistrar.add((new AnimationController<>(this, "open", 0, state -> PlayState.STOP)).triggerableAnim("open", OPEN).triggerableAnim("active", ACTIVE));
+        controllerRegistrar.add((new AnimationController<>(this, "open", 0, state -> PlayState.STOP)).triggerableAnim("open", OPEN));
+        controllerRegistrar.add(new AnimationController<>(this, "active", 0, animationState -> {
+            if (this.openTimer <= 0) {
+                if (this.open) {
+                    if (this.active) {
+                        return animationState.setAndContinue(ACTIVE);
+                    } else {
+                        return animationState.setAndContinue(IDLE_OPEN);
+                    }
+                } else {
+                    return animationState.setAndContinue(IDLE_CLOSED);
+                }
+            }
+            return PlayState.STOP;
+        }));
     }
 
     @Override
@@ -186,9 +205,8 @@ public class FoundryBlockEntity extends BlockEntity implements GeoBlockEntity, E
         if (!this.open) return;
         if (hasRecipe() && canInsertIntoOutputSlot()) {
             increaseCraftingProgress();
-            markDirty(world, pos, state);
-
             this.active = true;
+            markDirty(world, pos, state);
 
             if (hasCraftingFinished()) {
                 craftItem();
@@ -197,14 +215,8 @@ public class FoundryBlockEntity extends BlockEntity implements GeoBlockEntity, E
         } else {
             resetProgress();
             this.active = false;
+            markDirty(world, pos, state);
         }
-//        if (this.active) {
-//            this.triggerAnim("active", "active");
-//        } else {
-//            this.triggerAnim("idle_open", "idle_open");
-//        }
-
-
     }
 
     private void resetProgress() {

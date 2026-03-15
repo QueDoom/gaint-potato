@@ -1,0 +1,18 @@
+{
+  "block.giant_potato.crusher": "Crusher",
+  "block.giant_potato.crusher_wheel": "Crushing Wheel",
+  "block.giant_potato.foundry": "Foundry",
+  "block.giant_potato.mash_bowl": "Mash Bowl",
+  "block.giant_potato.smooth_potatoes": "Smooth Potatoes",
+  "gui.giant_potato.foundry": "Alloying",
+  "item.giant_potato.biosteel_alloy": "Biosteel",
+  "item.giant_potato.charred_potato": "Charred Potato",
+  "item.giant_potato.fertilizer_dirt": "Fertilizer Dirt",
+  "item.giant_potato.mash_bucket": "Mash Bucket",
+  "item.giant_potato.poisonous_potato_alloy": "Poisonous Potato Alloy",
+  "item.giant_potato.potato_alloy": "Potato Alloy",
+  "item.giant_potato.tiller": "Tiller",
+  "itemGroup.giant_potato": "Giant Potato",
+  "tag.item.giant_potato.mash_bowl_poisonous_potato": "Mash Bowl: Poisonous Potato",
+  "tag.item.giant_potato.mash_bowl_potato": "Mash Bowl: Potato"
+}

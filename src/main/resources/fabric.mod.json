@@ -25,7 +25,7 @@
 			"net.quedoon.giant_potato.GiantPotatoClient"
 		],
 		"emi": [
-			"net.quedoom.giant_potato.util.emi.GiantPotatoEmiPlugin"
+			"net.quedoon.giant_potato.util.emi.GiantPotatoEmiPlugin"
 		]
 	},
 	"mixins": [

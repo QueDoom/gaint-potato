@@ -1,0 +1,12 @@
+{
+  "type": "giant_potato:alloying",
+  "ingredients": [
+    {"tag": "c:ingots/iron"},
+    {"item": "minecraft:potato"},
+    {"tag": "c:ingots/iron"}
+  ],
+  "result": {
+    "id": "giant_potato:potato_alloy",
+    "count": 2
+  }
+}

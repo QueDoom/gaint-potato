@@ -9,10 +9,16 @@ public class ModBlockHitboxes {
     public static VoxelShape getMashBowlHitbox() {
         return VoxelShapes.union(
                   Block.createCuboidShape(0, 0, 0, 16, 8, 16)//,
-//                Block.createCuboidShape(0, 2, 0, 2, 8, 16),
-//                Block.createCuboidShape(14, 2, 0, 16, 8, 2),
-//                Block.createCuboidShape(2, 2, 0, 14, 8, 2),
-//                Block.createCuboidShape(2, 2, 14, 14, 8, 16)
+        );
+    }
+    public static VoxelShape getCrusherWheelHitbox() {
+        return VoxelShapes.union(
+                Block.createCuboidShape(0, 0, 0, 4, 14, 16)//,
+        );
+    }
+    public static VoxelShape getCrusherHitbox() {
+        return VoxelShapes.union(
+                Block.createCuboidShape(0, 0, 0, 16, 14, 16)//,
         );
     }
 }

@@ -11,7 +11,7 @@ import net.quedoon.giant_potato.GiantPotato;
 public class ModTags {
     public static class Blocks {
 
-
+            public static final TagKey<Block> ELEMENTAL_SMOOTH_POTATOES = createTag("elemental_smooth_potatoes");
 
 
         private static TagKey<Block> createTag(String name) {
@@ -20,7 +20,8 @@ public class ModTags {
     }
     public static class Items {
 
-
+        public static final TagKey<Item> MASH_BOWL_POTATO = createTag("mash_bowl_potato");
+        public static final TagKey<Item> MASH_BOWL_POISONOUS_POTATO = createTag("mash_bowl_poisonous_potato");
 
 
         private static TagKey<Item> createTag(String name) {

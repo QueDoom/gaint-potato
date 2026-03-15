@@ -9,6 +9,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.quedoon.giant_potato.GiantPotato;
 import net.quedoon.giant_potato.block.ModBlocks;
+import net.quedoon.giant_potato.fluid.ModFluids;
 
 public class ModItemGroups {
 
@@ -23,8 +24,13 @@ public class ModItemGroups {
                         entries.add(ModItems.FOUNDRY);
                         entries.add(ModItems.CRUSHER_WHEEL);
                         entries.add(ModBlocks.CRUSHER);
-                            }
-                    ).build());
+                        entries.add(ModItems.CHARRED_POTATO);
+                        entries.add(ModItems.BIOSTEEL_ALLOY);
+                        entries.add(ModItems.POTATO_ALLOY);
+                        entries.add(ModItems.POISONOUS_POTATO_ALLOY);
+                        entries.add(ModFluids.MASH_BUCKET);
+
+                    }).build());
 
     public static void registerModItemGroups() {
         GiantPotato.LOGGER.info("Registering Mod Item Groups for " + GiantPotato.MOD_ID);

@@ -22,7 +22,6 @@ public class FoundryScreenHandler extends ScreenHandler {
 
     public FoundryScreenHandler(int syncId, PlayerInventory inventory, BlockPos pos) {
         this(syncId, inventory, inventory.player.getWorld().getBlockEntity(pos), new ArrayPropertyDelegate(3));
-
     }
 
     public FoundryScreenHandler(int syncId, PlayerInventory playerInventory,
@@ -31,11 +30,11 @@ public class FoundryScreenHandler extends ScreenHandler {
         checkSize((Inventory) blockEntity, 4);
         this.inventory = (Inventory) blockEntity;
         this.propertyDelegate = arrayPropertyDelegate;
-        this. blockEntity = ((FoundryBlockEntity) blockEntity);
+        this.blockEntity = ((FoundryBlockEntity) blockEntity);
 
         this.addSlot(new Slot(inventory, 0, 42, 34));
         this.addSlot(new Slot(inventory, 1, 60, 34));
-        this.addSlot(new Slot(inventory, 2, 77, 34));
+        this.addSlot(new Slot(inventory, 2, 78, 34));
         this.addSlot(new Slot(inventory, 3, 139, 35));
 
         addPlayerHotbar(playerInventory);
@@ -106,5 +105,10 @@ public class FoundryScreenHandler extends ScreenHandler {
             this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
         }
 
+    }
+
+    @Override
+    public boolean canInsertIntoSlot(ItemStack stack, Slot slot) {
+        return slot.canInsert(stack) && slot.getIndex() != 3;
     }
 }

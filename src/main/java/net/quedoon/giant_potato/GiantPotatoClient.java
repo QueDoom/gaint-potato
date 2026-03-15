@@ -1,14 +1,23 @@
 package net.quedoon.giant_potato;
 
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandler;
+import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
+import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.render.item.ItemRenderer;
+import net.minecraft.util.Hand;
 import net.quedoon.giant_potato.block.entity.ModBlockEntities;
 import net.quedoon.giant_potato.block.entity.custom.FoundryBlockEntity;
+import net.quedoon.giant_potato.fluid.ModFluids;
+import net.quedoon.giant_potato.fluid.render.MashFluidRenderHandler;
 import net.quedoon.giant_potato.screen.ModScreenHandlers;
+import net.quedoon.giant_potato.screen.custom.CrusherScreen;
 import net.quedoon.giant_potato.screen.custom.FoundryScreen;
 import net.quedoon.giant_potato.util.gecko.model.CrusherWheelBlockModel;
 import net.quedoon.giant_potato.util.gecko.render.CrusherWheelBlockRenderer;
@@ -21,5 +30,13 @@ public class GiantPotatoClient implements ClientModInitializer {
         BlockEntityRendererFactories.register(ModBlockEntities.CRUSHER_WHEEL_BE, CrusherWheelBlockRenderer::new);
 
         HandledScreens.register(ModScreenHandlers.FOUNDRY_SCREEN_HANDLER, FoundryScreen::new);
+        HandledScreens.register(ModScreenHandlers.CRUSHER_SCREEN_HANDLER, CrusherScreen::new);
+
+//        FluidRenderHandlerRegistry.INSTANCE.register(ModFluids.MASH, ModFluids.MASH_FLOWING_UNUSED,
+//                SimpleFluidRenderHandler.coloredWater(0xf3f300ff));
+//        BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(),
+//                ModFluids.MASH,ModFluids.MASH_FLOWING_UNUSED);
+
+        FluidRenderHandlerRegistry.INSTANCE.register(ModFluids.MASH, ModFluids.MASH_FLOWING_UNUSED, new MashFluidRenderHandler());
     }
 }

@@ -7,7 +7,9 @@ import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.data.server.recipe.RecipeProvider;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
+import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
+import net.minecraft.recipe.BlastingRecipe;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
@@ -16,6 +18,7 @@ import net.quedoon.giant_potato.block.ModBlocks;
 import net.quedoon.giant_potato.item.ModItems;
 import net.quedoon.giant_potato.util.ModTags;
 
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class ModRecipeGenerator extends FabricRecipeProvider {
@@ -69,5 +72,8 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .criterion(hasItem(ModItems.FERTILIZER_DIRT), conditionsFromItem(ModItems.FERTILIZER_DIRT))
                 .group("foundry")
                 .offerTo(recipeExporter);
+
+        List<ItemConvertible> input_charred_potato = List.of(Items.POTATO);
+        offerBlasting(recipeExporter, input_charred_potato, RecipeCategory.MISC, ModItems.CHARRED_POTATO, 0.2f, 200, "charred_potato");
     }
 }

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "mash_bowl",
+  "key": {
+    "S": {
+      "tag": "minecraft:wooden_slabs"
+    }
+  },
+  "pattern": [
+    "   ",
+    "S S",
+    "SSS"
+  ],
+  "result": {
+    "count": 1,
+    "id": "giant_potato:mash_bowl"
+  }
+}

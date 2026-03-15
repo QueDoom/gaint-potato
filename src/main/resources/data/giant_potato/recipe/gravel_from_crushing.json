@@ -1,0 +1,9 @@
+{
+  "type": "giant_potato:crushing",
+  "ingredient": {
+    "item": "minecraft:cobblestone"
+  },
+  "result": {
+    "id": "minecraft:gravel"
+  }
+}

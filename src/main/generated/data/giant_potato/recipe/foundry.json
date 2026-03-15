@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "foundry",
+  "key": {
+    "F": {
+      "item": "giant_potato:fertilizer_dirt"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "S": {
+      "item": "giant_potato:smooth_potatoes"
+    }
+  },
+  "pattern": [
+    "III",
+    "IFI",
+    "SSS"
+  ],
+  "result": {
+    "count": 1,
+    "id": "giant_potato:foundry"
+  }
+}
