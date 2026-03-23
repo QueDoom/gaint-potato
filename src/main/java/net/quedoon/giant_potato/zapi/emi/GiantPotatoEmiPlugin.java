@@ -1,4 +1,4 @@
-package net.quedoon.giant_potato.util.emi;
+package net.quedoon.giant_potato.zapi.emi;
 
 import dev.emi.emi.api.EmiPlugin;
 import dev.emi.emi.api.EmiRegistry;
@@ -12,7 +12,7 @@ import net.quedoon.giant_potato.GiantPotato;
 import net.quedoon.giant_potato.block.ModBlocks;
 import net.quedoon.giant_potato.recipe.CrusherRecipe;
 import net.quedoon.giant_potato.recipe.ModRecipes;
-import net.quedoon.giant_potato.util.emi.recipes.CrusherRecipeEmiRecipe;
+import net.quedoon.giant_potato.zapi.emi.recipes.CrusherRecipeEmiRecipe;
 
 public class GiantPotatoEmiPlugin implements EmiPlugin {
     public static final Identifier CRUSHER_SPRITES = Identifier.of(GiantPotato.MOD_ID, "textures/gui/crusher/crusher_emi");

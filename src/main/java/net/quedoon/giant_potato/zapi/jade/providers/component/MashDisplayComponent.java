@@ -1,0 +1,33 @@
+package net.quedoon.giant_potato.zapi.jade.providers.component;
+
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
+import net.quedoon.giant_potato.block.entity.ImplementedInventory;
+import net.quedoon.giant_potato.block.entity.custom.MashTankBlockEntity;
+import snownee.jade.api.BlockAccessor;
+import snownee.jade.api.IBlockComponentProvider;
+import snownee.jade.api.ITooltip;
+import snownee.jade.api.config.IPluginConfig;
+
+import java.awt.*;
+import java.text.NumberFormat;
+
+public class MashDisplayComponent implements IBlockComponentProvider {
+    private static final NumberFormat nf = NumberFormat.getIntegerInstance();
+
+    @Override
+    public void appendTooltip(ITooltip iTooltip, BlockAccessor blockAccessor, IPluginConfig iPluginConfig) {
+        BlockEntity blockEntity = blockAccessor.getBlockEntity();
+//        if (blockEntity instanceof ImplementedInventory blockEntityWithImplementedInventory) {
+//            if (blockEntityWithImplementedInventory.getStack(0).)
+        if (blockEntity instanceof MashTankBlockEntity mashTankBlockEntity)
+            iTooltip.add(Text.translatable("component.giant_potato.mash", nf.format(mashTankBlockEntity.fluidStorage.getAmount()), nf.format(mashTankBlockEntity.fluidStorage.getCapacity())));
+//        }
+    }
+
+    @Override
+    public Identifier getUid() {
+        return null;
+    }
+}

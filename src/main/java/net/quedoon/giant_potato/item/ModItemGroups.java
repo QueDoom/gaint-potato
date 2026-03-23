@@ -19,16 +19,25 @@ public class ModItemGroups {
             FabricItemGroup.builder().displayName(Text.translatable("itemGroup.giant_potato"))
                     .icon(() -> new ItemStack(ModItems.TILLER)).entries((displayContext, entries) -> {
                         entries.add(ModBlocks.MASH_BOWL);
+                        entries.add(ModBlocks.MASH_PIPE);
+                        entries.add(ModItems.WRENCH);
+                        entries.add(ModBlocks.MASH_TANK);
+                        entries.add(ModFluids.MASH_BUCKET);
+
                         entries.add(ModItems.TILLER);
                         entries.add(ModItems.FERTILIZER_DIRT);
+                        entries.add(ModBlocks.SMOOTH_POTATOES);
+
                         entries.add(ModItems.FOUNDRY);
-                        entries.add(ModItems.CRUSHER_WHEEL);
-                        entries.add(ModBlocks.CRUSHER);
                         entries.add(ModItems.CHARRED_POTATO);
                         entries.add(ModItems.BIOSTEEL_ALLOY);
                         entries.add(ModItems.POTATO_ALLOY);
                         entries.add(ModItems.POISONOUS_POTATO_ALLOY);
-                        entries.add(ModFluids.MASH_BUCKET);
+
+                        entries.add(ModBlocks.CRUSHER);
+                        entries.add(ModItems.CRUSHER_WHEEL);
+
+
 
                     }).build());
 

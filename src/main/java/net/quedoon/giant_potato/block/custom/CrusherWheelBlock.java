@@ -7,7 +7,6 @@ import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.state.property.Property;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
@@ -15,13 +14,12 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.quedoon.giant_potato.block.ModBlocks;
 import net.quedoon.giant_potato.block.entity.custom.CrusherWheelBlockEntity;
+import net.quedoon.giant_potato.block.util.ModBlockHitboxes;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
 
 public class CrusherWheelBlock extends BlockWithEntity {
-    VoxelShape SHAPE = ModBlockHitboxes.getCrusherWheelHitbox();
-
     public static final MapCodec<CrusherWheelBlock> CODEC = CrusherWheelBlock.createCodec(CrusherWheelBlock::new);
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
 
@@ -72,6 +70,10 @@ public class CrusherWheelBlock extends BlockWithEntity {
         return new CrusherWheelBlockEntity(pos, state);
     }
 
+    private VoxelShape getShape(BlockState state) {
+        return ModBlockHitboxes.getCrusherWheelHitbox(state.get(Properties.HORIZONTAL_FACING));
+    }
+
     @Override
     protected BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.ENTITYBLOCK_ANIMATED;
@@ -79,11 +81,11 @@ public class CrusherWheelBlock extends BlockWithEntity {
 
     @Override
     protected VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPE;
+        return getShape(state);
     }
 
     @Override
     protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPE;
+        return getShape(state);
     }
 }

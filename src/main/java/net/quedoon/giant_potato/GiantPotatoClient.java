@@ -12,13 +12,16 @@ import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.util.Hand;
+import net.quedoon.giant_potato.block.ModBlocks;
 import net.quedoon.giant_potato.block.entity.ModBlockEntities;
 import net.quedoon.giant_potato.block.entity.custom.FoundryBlockEntity;
+import net.quedoon.giant_potato.block.entity.renderer.MashTankBlockEntityRenderer;
 import net.quedoon.giant_potato.fluid.ModFluids;
 import net.quedoon.giant_potato.fluid.render.MashFluidRenderHandler;
 import net.quedoon.giant_potato.screen.ModScreenHandlers;
 import net.quedoon.giant_potato.screen.custom.CrusherScreen;
 import net.quedoon.giant_potato.screen.custom.FoundryScreen;
+import net.quedoon.giant_potato.screen.custom.MashTankScreen;
 import net.quedoon.giant_potato.util.gecko.model.CrusherWheelBlockModel;
 import net.quedoon.giant_potato.util.gecko.render.CrusherWheelBlockRenderer;
 import net.quedoon.giant_potato.util.gecko.render.FoundryBlockRenderer;
@@ -29,8 +32,12 @@ public class GiantPotatoClient implements ClientModInitializer {
         BlockEntityRendererFactories.register(ModBlockEntities.FOUNDRY_BE, FoundryBlockRenderer::new);
         BlockEntityRendererFactories.register(ModBlockEntities.CRUSHER_WHEEL_BE, CrusherWheelBlockRenderer::new);
 
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MASH_TANK, RenderLayer.getCutout());
+        BlockEntityRendererFactories.register(ModBlockEntities.MASH_TANK_BE, MashTankBlockEntityRenderer::new);
+
         HandledScreens.register(ModScreenHandlers.FOUNDRY_SCREEN_HANDLER, FoundryScreen::new);
         HandledScreens.register(ModScreenHandlers.CRUSHER_SCREEN_HANDLER, CrusherScreen::new);
+        HandledScreens.register(ModScreenHandlers.MASH_TANK_SCREEN_HANDLER, MashTankScreen::new);
 
 //        FluidRenderHandlerRegistry.INSTANCE.register(ModFluids.MASH, ModFluids.MASH_FLOWING_UNUSED,
 //                SimpleFluidRenderHandler.coloredWater(0xf3f300ff));
@@ -40,3 +47,4 @@ public class GiantPotatoClient implements ClientModInitializer {
         FluidRenderHandlerRegistry.INSTANCE.register(ModFluids.MASH, ModFluids.MASH_FLOWING_UNUSED, new MashFluidRenderHandler());
     }
 }
+

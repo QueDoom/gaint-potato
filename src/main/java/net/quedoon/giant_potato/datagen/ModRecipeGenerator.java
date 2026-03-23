@@ -73,6 +73,16 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .group("foundry")
                 .offerTo(recipeExporter);
 
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.MIDAS_HAND)
+                .pattern(" GG")
+                .pattern(" GG")
+                .pattern("L  ")
+                .input('G', Blocks.GOLD_BLOCK)
+                .input('L', Items.LEATHER)
+                .criterion(hasItem(Blocks.GOLD_BLOCK), conditionsFromItem(Blocks.GOLD_BLOCK))
+                .group("midas_hand")
+                .offerTo(recipeExporter);
+
         List<ItemConvertible> input_charred_potato = List.of(Items.POTATO);
         offerBlasting(recipeExporter, input_charred_potato, RecipeCategory.MISC, ModItems.CHARRED_POTATO, 0.2f, 200, "charred_potato");
     }

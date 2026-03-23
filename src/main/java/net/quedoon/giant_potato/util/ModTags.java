@@ -13,6 +13,11 @@ public class ModTags {
 
             public static final TagKey<Block> ELEMENTAL_SMOOTH_POTATOES = createTag("elemental_smooth_potatoes");
 
+            public static final TagKey<Block> MASH_PIPE_CONNECT_TO = createTag("mash_pipe_connect_to");
+            public static final TagKey<Block> MASH_BOWLS = createTag("mash_bowls");
+
+            public static final TagKey<Block> MIDAS_HAND_WORKS_ON = createTag("midas_hand_works_on");
+
 
         private static TagKey<Block> createTag(String name) {
             return TagKey.of(RegistryKeys.BLOCK, Identifier.of(GiantPotato.MOD_ID, name));

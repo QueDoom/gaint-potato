@@ -17,32 +17,49 @@ public class ModLangGenerator extends FabricLanguageProvider {
 
     @Override
     public void generateTranslations(RegistryWrapper.WrapperLookup wrapperLookup, TranslationBuilder translationBuilder) {
-        translationBuilder.add("itemGroup.giant_potato", "Giant Potato");
-
-        translationBuilder.add(ModItems.TILLER, "Tiller");
-        translationBuilder.add(ModItems.FERTILIZER_DIRT, "Fertilizer Dirt");
-
+        // Blocks
         translationBuilder.add(ModBlocks.MASH_BOWL, "Mash Bowl");
+        translationBuilder.add(ModBlocks.MASH_TANK, "Mash Tank");
+        translationBuilder.add(ModBlocks.MASH_PIPE, "Mash Pipe");
         translationBuilder.add(ModBlocks.SMOOTH_POTATOES, "Smooth Potatoes");
         translationBuilder.add(ModItems.FOUNDRY, "Foundry");
         translationBuilder.add(ModItems.CRUSHER_WHEEL, "Crushing Wheel");
         translationBuilder.add(ModBlocks.CRUSHER, "Crusher");
         translationBuilder.add(ModFluids.MASH_BUCKET, "Mash Bucket");
 
+        // Items
+        translationBuilder.add(ModItems.TILLER, "Tiller");
+        translationBuilder.add(ModItems.FERTILIZER_DIRT, "Fertilizer Dirt");
         translationBuilder.add(ModItems.CHARRED_POTATO, "Charred Potato");
-        translationBuilder.add(ModItems.BIOSTEEL_ALLOY, "Biosteel");
+        translationBuilder.add(ModItems.BIOSTEEL_ALLOY, "Biosteel Alloy");
         translationBuilder.add(ModItems.POTATO_ALLOY, "Potato Alloy");
         translationBuilder.add(ModItems.POISONOUS_POTATO_ALLOY, "Poisonous Potato Alloy");
+        translationBuilder.add(ModItems.WRENCH, "Wrench");
+        translationBuilder.add(ModItems.MIDAS_HAND, "Midas's Hand");
 
+
+        // Tags
         translationBuilder.add(ModTags.Items.MASH_BOWL_POTATO, "Mash Bowl: Potato");
         translationBuilder.add(ModTags.Items.MASH_BOWL_POISONOUS_POTATO, "Mash Bowl: Poisonous Potato");
 
+        // Fluids
         translationBuilder.add(ModFluids.MASH_BLOCK, "Mash");
+        translationBuilder.add("block.giant_potato.mash", "Mash");
 
-
+        // GUI
         translationBuilder.add("gui.giant_potato.foundry", "Alloying");
         translationBuilder.add("gui.giant_potato.crusher", "Crushing");
         translationBuilder.add("giant_potato.crusher_workstation", "Crushing");
+        translationBuilder.add("gui.giant_potato.mash_tank", "Mash Tank");
 
+        // Jade
+        translationBuilder.add("component.giant_potato.mash", "%s / %s Mash");
+
+        // Other
+        translationBuilder.add("itemGroup.giant_potato", "Giant Potato");
+
+        translationBuilder.add("giant_potato.tooltip.liquid.amount.with.capacity", "%s / %s mB");
+        translationBuilder.add("giant_potato.tooltip.liquid.amount", "%s mB");
+        translationBuilder.add("block.minecraft.empty","Empty");
     }
 }

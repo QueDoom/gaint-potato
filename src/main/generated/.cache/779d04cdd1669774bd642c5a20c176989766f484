@@ -1,3 +1,6 @@
-// 1.21.1	2026-03-12T19:45:00.3709774	Giant Potato/Tags for minecraft:block
+// 1.21.1	2026-03-22T21:57:11.6238352	Giant Potato/Tags for minecraft:block
+a93b76daa22236015eb58220b1c2e387648f0112 data\giant_potato\tags\block\mash_pipe_connect_to.json
 6143ae7d60e9076f1ab13776cac99c45b86cf6f9 data\giant_potato\tags\block\elemental_smooth_potatoes.json
 a445be9141b5fc89d3a1662288745f618eb58324 data\minecraft\tags\block\mineable\pickaxe.json
+377b74189203a1eb5873ad3f34270add35864f28 data\giant_potato\tags\block\midas_hand_works_on.json
+c89a0796c8a186754bfc44cfbeff69cde3e797f6 data\giant_potato\tags\block\mash_bowls.json

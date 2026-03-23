@@ -116,7 +116,6 @@ public class FoundryBlockEntity extends BlockEntity implements GeoBlockEntity, E
         open = nbt.getBoolean("giant_potato.foundry.open");
         active = nbt.getBoolean("giant_potato.foundry.active");
 
-        updateListeners(false);
         super.readNbt(nbt, registryLookup);
     }
 
@@ -146,15 +145,9 @@ public class FoundryBlockEntity extends BlockEntity implements GeoBlockEntity, E
     }
 
     public void setOpen() {
-        this.open = true;
+        this.triggerAnim("open", "open");
+        this.setOpenTimer(30);
         markDirty();
-    }
-
-    private void updateListeners(boolean markDirty) {
-        if (markDirty) markDirty();
-        if (world != null) {
-            world.updateListeners(pos, getCachedState(), getCachedState(), 3);
-        }
     }
 
 
@@ -162,6 +155,9 @@ public class FoundryBlockEntity extends BlockEntity implements GeoBlockEntity, E
         return this.open;
     }
 
+    public void setOpenTimer(int val) {
+        this.openTimer = val;
+    }
     public void setOpenTimer() {
         this.openTimer = 30;
     }
@@ -174,18 +170,16 @@ public class FoundryBlockEntity extends BlockEntity implements GeoBlockEntity, E
     public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
         controllerRegistrar.add((new AnimationController<>(this, "open", 0, state -> PlayState.STOP)).triggerableAnim("open", OPEN));
         controllerRegistrar.add(new AnimationController<>(this, "active", 0, animationState -> {
-            if (this.openTimer <= 0) {
-                if (this.open) {
-                    if (this.active) {
-                        return animationState.setAndContinue(ACTIVE);
-                    } else {
-                        return animationState.setAndContinue(IDLE_OPEN);
-                    }
+            if (this.openTimer > 0) return PlayState.STOP;
+            if (this.open) {
+                if (this.active) {
+                    return animationState.setAndContinue(ACTIVE);
                 } else {
-                    return animationState.setAndContinue(IDLE_CLOSED);
+                    return animationState.setAndContinue(IDLE_OPEN);
                 }
+            } else {
+                return animationState.setAndContinue(IDLE_CLOSED);
             }
-            return PlayState.STOP;
         }));
     }
 
@@ -199,6 +193,7 @@ public class FoundryBlockEntity extends BlockEntity implements GeoBlockEntity, E
     public void tick(World world, BlockPos pos, BlockState state) {
         if (this.openTimer >= 0) {
             this.open = this.openTimer == 0;
+            markDirty();
             this.openTimer--;
         }
 

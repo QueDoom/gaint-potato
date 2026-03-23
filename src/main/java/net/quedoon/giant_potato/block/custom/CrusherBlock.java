@@ -22,8 +22,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.quedoon.giant_potato.block.entity.ModBlockEntities;
 import net.quedoon.giant_potato.block.entity.custom.CrusherBlockEntity;
-import net.quedoon.giant_potato.block.entity.custom.FoundryBlockEntity;
-import net.quedoon.giant_potato.item.ModItems;
+import net.quedoon.giant_potato.block.util.ModBlockHitboxes;
 import org.jetbrains.annotations.Nullable;
 
 public class CrusherBlock extends BlockWithEntity implements BlockEntityProvider {

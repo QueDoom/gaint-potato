@@ -11,9 +11,6 @@ import net.quedoon.giant_potato.recipe.ModRecipes;
 import net.quedoon.giant_potato.screen.ModScreenHandlers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import software.bernie.geckolib.GeckoLib;
-
-import java.util.List;
 
 public class GiantPotato implements ModInitializer {
 	public static final String MOD_ID = "giant_potato";

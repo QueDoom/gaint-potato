@@ -96,8 +96,7 @@ public class FoundryBlock extends BlockWithEntity implements BlockEntityProvider
                 }
             } else {
                 if (player.getMainHandStack().isOf(ModItems.TILLER)) {
-                    foundryBlockEntity.triggerAnim("open", "open");
-                    foundryBlockEntity.setOpenTimer();
+                    foundryBlockEntity.setOpen();
                     return ItemActionResult.SUCCESS;
                 }
             }
