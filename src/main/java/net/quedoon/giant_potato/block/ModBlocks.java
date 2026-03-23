@@ -10,16 +10,19 @@ import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.quedoon.giant_potato.GiantPotato;
-import net.quedoon.giant_potato.block.custom.CrusherBlock;
-import net.quedoon.giant_potato.block.custom.CrusherWheelBlock;
-import net.quedoon.giant_potato.block.custom.FoundryBlock;
-import net.quedoon.giant_potato.block.custom.MashBowlBlock;
+import net.quedoon.giant_potato.block.custom.*;
 
 public class ModBlocks {
 
     public static final Block MASH_BOWL = registerBlock("mash_bowl",
             new MashBowlBlock(AbstractBlock.Settings.create().sounds(BlockSoundGroup.WOOD)
                     .strength(1.0f).resistance(1.0f)));
+    public static final Block MASH_TANK = registerBlock("mash_tank",
+            new MashTankBlock(AbstractBlock.Settings.create().sounds(BlockSoundGroup.WOOD)
+                    .strength(1.0F).resistance(1.0F).nonOpaque()));
+    public static final Block MASH_PIPE = registerBlock("mash_pipe",
+            new MashPipeBlock(AbstractBlock.Settings.create().sounds(BlockSoundGroup.WOOD)
+                    .strength(1.0F).resistance(1.0F).nonOpaque()));
     public static final Block SMOOTH_POTATOES = registerBlock("smooth_potatoes",
             new Block(AbstractBlock.Settings.create().sounds(BlockSoundGroup.STONE)
                     .strength(3.0F).resistance(3.0F).requiresTool()));

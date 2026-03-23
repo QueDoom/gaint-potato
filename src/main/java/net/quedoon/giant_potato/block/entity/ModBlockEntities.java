@@ -6,9 +6,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.quedoon.giant_potato.GiantPotato;
 import net.quedoon.giant_potato.block.ModBlocks;
-import net.quedoon.giant_potato.block.entity.custom.CrusherBlockEntity;
-import net.quedoon.giant_potato.block.entity.custom.CrusherWheelBlockEntity;
-import net.quedoon.giant_potato.block.entity.custom.FoundryBlockEntity;
+import net.quedoon.giant_potato.block.entity.custom.*;
 
 
 public class ModBlockEntities {
@@ -23,6 +21,15 @@ public class ModBlockEntities {
     public static final BlockEntityType<CrusherWheelBlockEntity> CRUSHER_WHEEL_BE =
             Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(GiantPotato.MOD_ID, "crusher_wheel_be"),
                     BlockEntityType.Builder.create(CrusherWheelBlockEntity::new, ModBlocks.CRUSHER_WHEEL).build(null));
+
+    public static final BlockEntityType<MashTankBlockEntity> MASH_TANK_BE =
+            Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(GiantPotato.MOD_ID, "mash_tank_be"),
+                    BlockEntityType.Builder.create(MashTankBlockEntity::new, ModBlocks.MASH_TANK).build(null));
+
+    public static final BlockEntityType<MashPipeBlockEntity> MASH_PIPE_BE =
+            Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(GiantPotato.MOD_ID, "mash_pipe_be"),
+                    BlockEntityType.Builder.create(MashPipeBlockEntity::new, ModBlocks.MASH_PIPE).build(null));
+
 
 
     public static void registerBlockEntities() {

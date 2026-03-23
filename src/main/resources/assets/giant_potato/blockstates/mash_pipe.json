@@ -1,0 +1,63 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "giant_potato:block/mash_pipe/center"
+      }
+    },
+    {
+      "apply": {
+        "model": "giant_potato:block/mash_pipe/north",
+        "uvlock": true
+      },
+      "when": {
+        "north_pipe_shape": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "giant_potato:block/mash_pipe/east",
+        "uvlock": true
+      },
+      "when": {
+        "east_pipe_shape": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "giant_potato:block/mash_pipe/south",
+        "uvlock": true
+      },
+      "when": {
+        "south_pipe_shape": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "giant_potato:block/mash_pipe/west",
+        "uvlock": true
+      },
+      "when": {
+        "west_pipe_shape": "true"
+      }
+    },
+    {
+      "when": {
+        "up_pipe_shape": "true"
+      },
+      "apply": {
+        "model": "giant_potato:block/mash_pipe/up",
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "down_pipe_shape": "true"
+      },
+      "apply": {
+        "model": "giant_potato:block/mash_pipe/down",
+        "uvlock": true
+      }
+    }
+  ]
+}
