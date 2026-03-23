@@ -11,7 +11,7 @@
 		"homepage": "https://munhco.online/",
 		"sources": "https://github.com/QueDoom/gaint-potato"
 	},
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"icon": "assets/giant_potato/icon.png",
 	"environment": "*",
 	"entrypoints": {
@@ -25,7 +25,10 @@
 			"net.quedoon.giant_potato.GiantPotatoClient"
 		],
 		"emi": [
-			"net.quedoon.giant_potato.util.emi.GiantPotatoEmiPlugin"
+			"net.quedoon.giant_potato.zapi.emi.GiantPotatoEmiPlugin"
+		],
+		"jade": [
+			"net.quedoon.giant_potato.zapi.jade.GiantPotatoJadePlugin"
 		]
 	},
 	"mixins": [
