@@ -22,6 +22,9 @@ repositories {
 		name = "TerraformersMC"
 		url = "https://maven.terraformersmc.com/"
 	}
+	maven {
+		name = "Modrinth"
+		url = "https://api.modrinth.com/maven" }
 }
 
 fabricApi {
@@ -45,6 +48,9 @@ dependencies {
 	//EMI
 	modCompileOnly "dev.emi:emi-fabric:${emi_version}:api"
 	modLocalRuntime "dev.emi:emi-fabric:${emi_version}"
+
+	// Jade
+	modImplementation "maven.modrinth:jade:${project.jade_version}"
 }
 
 processResources {
