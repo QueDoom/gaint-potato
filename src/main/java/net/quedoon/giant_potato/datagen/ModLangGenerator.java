@@ -26,6 +26,7 @@ public class ModLangGenerator extends FabricLanguageProvider {
         translationBuilder.add(ModItems.CRUSHER_WHEEL, "Crushing Wheel");
         translationBuilder.add(ModBlocks.CRUSHER, "Crusher");
         translationBuilder.add(ModFluids.MASH_BUCKET, "Mash Bucket");
+        translationBuilder.add(ModFluids.POISONOUS_MASH_BUCKET, "Poisonous Mash Bucket");
 
         // Items
         translationBuilder.add(ModItems.TILLER, "Tiller");
@@ -41,6 +42,9 @@ public class ModLangGenerator extends FabricLanguageProvider {
         // Tags
         translationBuilder.add(ModTags.Items.MASH_BOWL_POTATO, "Mash Bowl: Potato");
         translationBuilder.add(ModTags.Items.MASH_BOWL_POISONOUS_POTATO, "Mash Bowl: Poisonous Potato");
+        translationBuilder.add(ModTags.Fluid.MASH, "Mash");
+        translationBuilder.add(ModTags.Fluid.POISONOUS_MASH, "Poisonous Mash");
+        translationBuilder.add(ModTags.Fluid.MASH_FLUIDS, "Mash Fluids");
 
         // Fluids
         translationBuilder.add(ModFluids.MASH_BLOCK, "Mash");
@@ -49,11 +53,14 @@ public class ModLangGenerator extends FabricLanguageProvider {
         // GUI
         translationBuilder.add("gui.giant_potato.foundry", "Alloying");
         translationBuilder.add("gui.giant_potato.crusher", "Crushing");
-        translationBuilder.add("giant_potato.crusher_workstation", "Crushing");
+        translationBuilder.add("recipeCatagory.giant_potato.crusher_workstation", "Crushing");
         translationBuilder.add("gui.giant_potato.mash_tank", "Mash Tank");
 
         // Jade
         translationBuilder.add("component.giant_potato.mash", "%s / %s Mash");
+
+        // EMI
+        translationBuilder.add("giant_potato.emi.info.mash_buckets", "Mash can be obtained by throwing potatoes on a Mash Bowl and then jumping on it.");
 
         // Other
         translationBuilder.add("itemGroup.giant_potato", "Giant Potato");

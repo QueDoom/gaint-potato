@@ -3,6 +3,9 @@ package net.quedoon.giant_potato.screen.custom;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.fabric.api.client.screen.v1.Screens;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
+import net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage;
+import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
+import net.fabricmc.fabric.api.transfer.v1.storage.base.SingleVariantStorage;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.GameRenderer;
@@ -63,9 +66,12 @@ public class MashTankScreen extends HandledScreen<MashTankScreenHandler> {
 
         context.drawTexture(GUI_TEXTURE, x, y, 0, 0, backgroundWidth, backgroundHeight);
 
-//        fluidStackRenderer.drawFluid(context, handler.blockEntity.fluidStorage, x + 80, y + 8, 16, 64,
-//                (FluidConstants.BUCKET / 81) * 64);
-        renderValueMash(context, x, y);
+
+        fluidStackRenderer.drawFluid(context, handler.blockEntity.fluidStorageHalf, x + 80, y + 40, 16, 32,
+                (FluidConstants.BUCKET / 81) * 16);
+        fluidStackRenderer.drawFluid(context, handler.blockEntity.fluidStorageHalfMinus, x + 80, y + 8, 16, 32,
+                (FluidConstants.BUCKET / 81) * 16);
+        //renderValueMash(context, x, y);
     }
 
     private void renderValueMash(DrawContext context, int x, int y) {

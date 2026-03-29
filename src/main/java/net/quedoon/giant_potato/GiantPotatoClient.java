@@ -18,6 +18,7 @@ import net.quedoon.giant_potato.block.entity.custom.FoundryBlockEntity;
 import net.quedoon.giant_potato.block.entity.renderer.MashTankBlockEntityRenderer;
 import net.quedoon.giant_potato.fluid.ModFluids;
 import net.quedoon.giant_potato.fluid.render.MashFluidRenderHandler;
+import net.quedoon.giant_potato.fluid.render.PoisonousMashFluidRenderHandler;
 import net.quedoon.giant_potato.screen.ModScreenHandlers;
 import net.quedoon.giant_potato.screen.custom.CrusherScreen;
 import net.quedoon.giant_potato.screen.custom.FoundryScreen;
@@ -45,6 +46,7 @@ public class GiantPotatoClient implements ClientModInitializer {
 //                ModFluids.MASH,ModFluids.MASH_FLOWING_UNUSED);
 
         FluidRenderHandlerRegistry.INSTANCE.register(ModFluids.MASH, ModFluids.MASH_FLOWING_UNUSED, new MashFluidRenderHandler());
+        FluidRenderHandlerRegistry.INSTANCE.register(ModFluids.POISONOUS_MASH, ModFluids.POISONOUS_MASH_FLOWING_UNUSED, new PoisonousMashFluidRenderHandler());
     }
 }
 

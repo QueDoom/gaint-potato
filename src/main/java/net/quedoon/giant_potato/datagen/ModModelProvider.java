@@ -27,6 +27,7 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.WRENCH, Models.HANDHELD);
         itemModelGenerator.register(ModItems.CRUSHER_WHEEL, Models.GENERATED);
         itemModelGenerator.register(ModFluids.MASH_BUCKET, Models.GENERATED);
+        itemModelGenerator.register(ModFluids.POISONOUS_MASH_BUCKET, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.CHARRED_POTATO, Models.GENERATED);
         itemModelGenerator.register(ModItems.BIOSTEEL_ALLOY, Models.GENERATED);

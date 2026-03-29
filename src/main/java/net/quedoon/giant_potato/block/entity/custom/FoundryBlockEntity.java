@@ -144,10 +144,12 @@ public class FoundryBlockEntity extends BlockEntity implements GeoBlockEntity, E
         return inventory.size();
     }
 
-    public void setOpen() {
-        this.triggerAnim("open", "open");
-        this.setOpenTimer(30);
-        markDirty();
+    public void setOpen(World pWorld) {
+        if (pWorld.isClient()) {
+            this.open = true;
+            this.setOpenTimer();
+            markDirty();
+        }
     }
 
 
@@ -168,9 +170,9 @@ public class FoundryBlockEntity extends BlockEntity implements GeoBlockEntity, E
          */
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
-        controllerRegistrar.add((new AnimationController<>(this, "open", 0, state -> PlayState.STOP)).triggerableAnim("open", OPEN));
+        //controllerRegistrar.add((new AnimationController<>(this, "open", 0, state -> PlayState.STOP)).triggerableAnim("open", OPEN));
         controllerRegistrar.add(new AnimationController<>(this, "active", 0, animationState -> {
-            if (this.openTimer > 0) return PlayState.STOP;
+            if (this.openTimer > 0) return animationState.setAndContinue(OPEN);
             if (this.open) {
                 if (this.active) {
                     return animationState.setAndContinue(ACTIVE);

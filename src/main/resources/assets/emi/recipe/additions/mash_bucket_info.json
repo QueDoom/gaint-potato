@@ -1,0 +1,8 @@
+{
+  "type": "emi:info",
+  "stacks": [
+    "item:giant_potato:mash_bucket",
+    "item:giant_potato:poisonous_mash_bucket"
+  ],
+  "text": "giant_potato.emi.info.mash_buckets"
+}

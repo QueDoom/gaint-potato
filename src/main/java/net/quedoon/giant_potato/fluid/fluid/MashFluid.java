@@ -1,16 +1,12 @@
-package net.quedoon.giant_potato.fluid;
+package net.quedoon.giant_potato.fluid.fluid;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.client.option.ParticlesMode;
-import net.minecraft.client.particle.Particle;
-import net.minecraft.client.sound.Sound;
 import net.minecraft.fluid.FlowableFluid;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.item.Item;
-import net.minecraft.particle.ParticleEffect;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
@@ -21,7 +17,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
-import org.jetbrains.annotations.Nullable;
+import net.quedoon.giant_potato.fluid.ModFluids;
 
 import java.util.Optional;
 

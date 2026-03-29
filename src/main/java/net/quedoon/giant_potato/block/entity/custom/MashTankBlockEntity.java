@@ -2,18 +2,15 @@ package net.quedoon.giant_potato.block.entity.custom;
 
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
-import net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.fabricmc.fabric.api.transfer.v1.storage.base.SingleVariantStorage;
 import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.Inventories;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
@@ -32,8 +29,9 @@ import net.quedoon.giant_potato.block.entity.ImplementedInventory;
 import net.quedoon.giant_potato.block.entity.ModBlockEntities;
 import net.quedoon.giant_potato.block.entity.fluid.FluidUtils;
 import net.quedoon.giant_potato.fluid.ModFluids;
-import net.quedoon.giant_potato.screen.ModScreenHandlers;
+import net.quedoon.giant_potato.fluid.util.EmptyableItemContainer;
 import net.quedoon.giant_potato.screen.custom.MashTankScreenHandler;
+import net.quedoon.giant_potato.util.ModTags;
 import org.jetbrains.annotations.Nullable;
 
 public class MashTankBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory<BlockPos>, ImplementedInventory {
@@ -65,6 +63,40 @@ public class MashTankBlockEntity extends BlockEntity implements ExtendedScreenHa
     }
 
     public final SingleVariantStorage<FluidVariant> fluidStorage = new SingleVariantStorage<FluidVariant>() {
+        @Override
+        protected FluidVariant getBlankVariant() {
+            return FluidVariant.blank();
+        }
+
+        @Override
+        protected long getCapacity(FluidVariant variant) {
+            return (FluidConstants.BUCKET / 81) * 64; // 1 Bucket = 81000 Droplets = 1000mB || * 64 ==> 64,000mB = 64 Buckets
+        }
+
+        @Override
+        protected void onFinalCommit() {
+            markDirty();
+            getWorld().updateListeners(pos, getCachedState(), getCachedState(), 3);
+        }
+    };
+    public final SingleVariantStorage<FluidVariant> fluidStorageHalf = new SingleVariantStorage<FluidVariant>() {
+        @Override
+        protected FluidVariant getBlankVariant() {
+            return FluidVariant.blank();
+        }
+
+        @Override
+        protected long getCapacity(FluidVariant variant) {
+            return (FluidConstants.BUCKET / 81) * 64; // 1 Bucket = 81000 Droplets = 1000mB || * 64 ==> 64,000mB = 64 Buckets
+        }
+
+        @Override
+        protected void onFinalCommit() {
+            markDirty();
+            getWorld().updateListeners(pos, getCachedState(), getCachedState(), 3);
+        }
+    };
+    public final SingleVariantStorage<FluidVariant> fluidStorageHalfMinus = new SingleVariantStorage<FluidVariant>() {
         @Override
         protected FluidVariant getBlankVariant() {
             return FluidVariant.blank();
@@ -118,9 +150,14 @@ public class MashTankBlockEntity extends BlockEntity implements ExtendedScreenHa
             try(Transaction transaction = Transaction.openOuter()) {
                 FluidVariant variant = fluidStorage.variant;
                 this.fluidStorage.extract(variant, 1000, transaction);
+                setFluidStorages();
                 if(variant.isOf(ModFluids.MASH)) {
                     inventory.set(1, new ItemStack(ModFluids.MASH_BUCKET));
                 }
+                if(variant.isOf(ModFluids.POISONOUS_MASH)) {
+                    inventory.set(1, new ItemStack(ModFluids.POISONOUS_MASH_BUCKET));
+                }
+
                 transaction.commit();
             }
         }
@@ -132,18 +169,49 @@ public class MashTankBlockEntity extends BlockEntity implements ExtendedScreenHa
     }
 
     private void transferFluidToTank() {
-       if(inventory.get(0).isOf(ModFluids.MASH_BUCKET) && (fluidStorage.variant.isOf(ModFluids.MASH) || fluidStorage.isResourceBlank())) {
+       if(inventory.get(0).isIn(ModTags.Items.MASH_BUCKETS) && (fluidStorage.variant.isOf(ModFluids.MASH) || fluidStorage.isResourceBlank())) {
             try (Transaction transaction = Transaction.openOuter()) {
                 this.fluidStorage.insert(FluidVariant.of(ModFluids.MASH), 1000, transaction);
-                inventory.set(0, new ItemStack(Items.BUCKET));
+                setFluidStorages();
+                setInputSlotToEmptyContainer();
+                transaction.commit();
+            }
+        }
+       if(inventory.get(0).isIn(ModTags.Items.POISONOUS_MASH_BUCKETS) && (fluidStorage.variant.isOf(ModFluids.POISONOUS_MASH) || fluidStorage.isResourceBlank())) {
+            try (Transaction transaction = Transaction.openOuter()) {
+                this.fluidStorage.insert(FluidVariant.of(ModFluids.POISONOUS_MASH), 1000, transaction);
+                setFluidStorages();
+                setInputSlotToEmptyContainer();
                 transaction.commit();
             }
         }
     }
 
+    private void setFluidStorages() {
+        this.fluidStorageHalf.variant = this.fluidStorage.variant;
+        this.fluidStorageHalf.amount = this.fluidStorage.amount / 2;
+        this.fluidStorageHalfMinus.variant = this.fluidStorage.variant;
+        this.fluidStorageHalfMinus.amount = this.fluidStorageHalf.amount - 16000;
+        if (this.fluidStorageHalfMinus.amount < 0) {
+            this.fluidStorageHalfMinus.amount = 0;
+        }
+        if (this.fluidStorageHalf.amount > 16000) {
+            this.fluidStorageHalf.amount = 16000;
+        }
+        markDirty();
+    }
+
+
+    private void setInputSlotToEmptyContainer() {
+        Item item = this.inventory.get(0).getItem();
+        if (item instanceof EmptyableItemContainer itemContainer) {
+            this.inventory.set(0, itemContainer.getEmptyItem().getDefaultStack());
+        }
+    }
+
+
     private boolean hasFluidStackInFirstSlot() {
-        return !inventory.get(0).isEmpty() && FluidUtils.isContainer(inventory.get(0))
-                && !FluidUtils.isContainerEmpty(inventory.get(0));
+        return !inventory.get(0).isEmpty() && inventory.get(0).isIn(ModTags.Items.MASH_BUCKETS) || inventory.get(0).isIn(ModTags.Items.POISONOUS_MASH_BUCKETS);
     }
 
     @Override

@@ -1,0 +1,6 @@
+{
+  "type": "emi:world_interaction",
+  "left": "item:minecraft:torch",
+  "right": "item:minecraft:redstone_block",
+  "output": "item:minecraft:redstone_torch"
+}

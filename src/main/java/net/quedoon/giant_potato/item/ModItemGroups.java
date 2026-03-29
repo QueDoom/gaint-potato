@@ -23,6 +23,7 @@ public class ModItemGroups {
                         entries.add(ModItems.WRENCH);
                         entries.add(ModBlocks.MASH_TANK);
                         entries.add(ModFluids.MASH_BUCKET);
+                        entries.add(ModFluids.POISONOUS_MASH_BUCKET);
 
                         entries.add(ModItems.TILLER);
                         entries.add(ModItems.FERTILIZER_DIRT);
