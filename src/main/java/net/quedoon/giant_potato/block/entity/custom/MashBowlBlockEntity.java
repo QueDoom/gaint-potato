@@ -73,9 +73,10 @@ public class MashBowlBlockEntity extends BlockEntity implements ImplementedInven
                 if (mashType != null && this.fluidStorage.amount + (stack.isIn(ModTags.Items.MASH_BUCKETS) ? MASH_PER_POTATO : MASH_PER_POISONOUS_POTATO) <= this.fluidStorage.getCapacity()) {
                     try (Transaction transaction = Transaction.openOuter()) {
                         stack.decrement(1);
-                        this.fluidStorage.insert(FluidVariant.of(mashType), getFluidAmountFromPotato(stack), transaction);
+                        this.fluidStorage.insert(FluidVariant.of(mashType), mashAmount, transaction);
                         transaction.commit();
                     }
+
                 }
                 world.playSoundAtBlockCenter(pos, SoundEvents.ENTITY_SLIME_JUMP_SMALL, SoundCategory.BLOCKS, 1, 1, true);
             }
@@ -97,10 +98,10 @@ public class MashBowlBlockEntity extends BlockEntity implements ImplementedInven
         double xPos = pos.getX() + 0.5f;
         double yPos = pos.getY() + 0.4f;
         double zPos = pos.getZ() + 0.5f;
-        double offset = 0;
-        double xVel = 0;
-        double yVel = 0;
-        double zVel = 0;
+        double offset;
+        double xVel;
+        double yVel;
+        double zVel;
         for (int i = big ? 12 : 4; i > 0; i--) {
             offset = RandomGenerator.getDefault().nextDouble() * 0.6 - 0.3;
             xVel = RandomGenerator.getDefault().nextDouble() * 0.4 - 0.1;
