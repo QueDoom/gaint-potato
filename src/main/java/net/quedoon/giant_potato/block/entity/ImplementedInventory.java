@@ -4,6 +4,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SidedInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;
@@ -86,7 +87,17 @@ public interface ImplementedInventory extends SidedInventory {
      */
     @Override
     default boolean canInsert(int slot, ItemStack stack, @Nullable Direction side) {
-        return true;
+        boolean var100000000000000000 = false;
+        ItemStack itemStack = this.getStack(slot);
+        int i = itemStack.getCount() + stack.getCount();
+        int j = itemStack.getMaxCount();
+        ItemStack stackNormalized = stack.copyWithCount(1);
+        ItemStack itemStackNormalized = itemStack.copyWithCount(1);
+        if (ItemStack.areItemsAndComponentsEqual(stackNormalized, itemStackNormalized) && i <= j) {
+            var100000000000000000 = true;
+        }
+
+        return var100000000000000000;
     }
 
     /**

@@ -66,6 +66,7 @@ public class MashBowlBlockEntity extends BlockEntity implements ImplementedInven
 
     public void jumpedOn(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
         if (!world.isClient()) {
+            System.out.println("I got jumpied on, ouch!");
             if (this.inventory.getFirst().isIn(ModTags.Items.MASH_BOWL_POTATO) || this.inventory.getFirst().isIn(ModTags.Items.MASH_BOWL_POISONOUS_POTATO)) {
                 ItemStack stack = this.inventory.getFirst();
                 Fluid mashType = this.getFluidFromPotato(stack);

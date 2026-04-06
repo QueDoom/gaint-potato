@@ -63,6 +63,8 @@ public class MashBowlBlock extends Block {
 
     @Override
     public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
+        if (!world.isClient) return;
+        System.out.println("I got stepped on, ouch!");
         BlockEntity blockEntity = world.getBlockEntity(pos);
         if (!(blockEntity instanceof MashBowlBlockEntity mashBowlBlockEntity)) return;
         if (!(entity instanceof ItemEntity item)) return;
@@ -72,7 +74,7 @@ public class MashBowlBlock extends Block {
         if (canInsert(inventory, itemEntityStack)) {
             if (itemStack.isEmpty()) {
                 inventory.set(0, itemEntityStack);
-                itemEntityStack = ItemStack.EMPTY;
+                item.setStack(ItemStack.EMPTY);
             } else if (canMergeItems(itemEntityStack, itemStack)) {
                 int i = itemEntityStack.getMaxCount() - itemEntityStack.getCount();
                 int j = Math.min(itemEntityStack.getCount(), i);
