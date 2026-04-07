@@ -5,6 +5,7 @@ import net.minecraft.client.render.item.BuiltinModelItemRenderer;
 import net.minecraft.item.BlockItem;
 import net.minecraft.util.Identifier;
 import net.quedoon.giant_potato.GiantPotato;
+import net.quedoon.giant_potato.block.ModBlocks;
 import net.quedoon.giant_potato.util.gecko.render.FoundryBlockItemRenderer;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoItem;
@@ -23,8 +24,8 @@ public class FoundryBlockItem extends BlockItem implements GeoItem {
 
     RawAnimation IDLE = RawAnimation.begin().thenLoop("is_open");
 
-    public FoundryBlockItem(Block block, Settings settings) {
-        super(block, settings);
+    public FoundryBlockItem(Settings settings) {
+        super(ModBlocks.FOUNDRY, settings);
     }
 
     @Override
