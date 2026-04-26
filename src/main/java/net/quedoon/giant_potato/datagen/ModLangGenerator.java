@@ -67,6 +67,6 @@ public class ModLangGenerator extends FabricLanguageProvider {
 
         translationBuilder.add("giant_potato.tooltip.liquid.amount.with.capacity", "%s / %s mB");
         translationBuilder.add("giant_potato.tooltip.liquid.amount", "%s mB");
-        translationBuilder.add("block.minecraft.empty","Empty");
+        translationBuilder.add("block.minecraftDir.empty","Empty");
     }
 }

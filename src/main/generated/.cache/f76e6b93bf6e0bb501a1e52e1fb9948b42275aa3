@@ -1,6 +1,6 @@
-// 1.21.1	2026-03-28T20:57:58.7597687	Giant Potato/Tags for minecraft:item
-f51d00846fc0208b7fab7258d0caa2e698bf3986 data\giant_potato\tags\item\mash_buckets.json
-70d4590b23287ac8e8dd5cb63dfc1ef9098f1042 data\giant_potato\tags\item\mash_bowl_potatoes.json
-849f851b30eb74acf2ca9316cd9708544427ecbc data\giant_potato\tags\item\mash_bowl_potato.json
-0b0c00cbdd3f334f446508639116b3413a3c3cf0 data\giant_potato\tags\item\poisonous_mash_buckets.json
-635de4c7559d65c52269150e0f5edf6de7379583 data\giant_potato\tags\item\mash_bowl_poisonous_potato.json
+// 1.21.1	2026-04-09T22:26:31.319753226	Giant Potato/Tags for minecraft:item
+70d4590b23287ac8e8dd5cb63dfc1ef9098f1042 data/giant_potato/tags/item/mash_bowl_potatoes.json
+849f851b30eb74acf2ca9316cd9708544427ecbc data/giant_potato/tags/item/mash_bowl_potato.json
+635de4c7559d65c52269150e0f5edf6de7379583 data/giant_potato/tags/item/mash_bowl_poisonous_potato.json
+f51d00846fc0208b7fab7258d0caa2e698bf3986 data/giant_potato/tags/item/mash_buckets.json
+0b0c00cbdd3f334f446508639116b3413a3c3cf0 data/giant_potato/tags/item/poisonous_mash_buckets.json
