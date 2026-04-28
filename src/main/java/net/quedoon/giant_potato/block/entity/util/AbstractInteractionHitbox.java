@@ -14,6 +14,7 @@ import org.joml.Vector3f;
 
 public abstract class AbstractInteractionHitbox {
     public static final Vector3f RED = new Vector3f(0.7f, 0.1f, 0.3f);
+    public static final Vector3f YELLOW = new Vector3f(0.922f, 0.91f, 0.376f);
 
     protected final Box originalBox;
 

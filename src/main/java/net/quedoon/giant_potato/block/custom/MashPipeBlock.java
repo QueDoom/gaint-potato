@@ -93,23 +93,23 @@ public class MashPipeBlock extends BlockWithEntity {
         return this.getDefaultState().with(NORTH, north).with(SOUTH, south).with(EAST, east).with(WEST, west).with(UP, up).with(DOWN, down);
     }
 
-    @Override
-    protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if(!(stack.isOf(ModItems.WRENCH))) return ItemActionResult.FAIL;
-        if(!(state.getBlock() instanceof MashPipeBlock)) return ItemActionResult.FAIL;
-
-        if(world.isClient()) {
-            Vec3d posInBlock = hit.getPos();
-            world.addParticle(ParticleTypes.FLAME, posInBlock.x, posInBlock.y, posInBlock.z, 0, 0, 0);
-        } else {
-            Optional<Direction> shape = getPipeShapeFromHitPos(hit, pos);
-            if (shape.isPresent()) {
-                Direction shapeDir = shape.get();
-            }
-        }
-        stack.damage(1, player, EquipmentSlot.MAINHAND);
-        return ItemActionResult.SUCCESS;
-    }
+//    @Override
+//    protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+//        if(!(stack.isOf(ModItems.WRENCH))) return ItemActionResult.FAIL;
+//        if(!(state.getBlock() instanceof MashPipeBlock)) return ItemActionResult.FAIL;
+//
+//        if(world.isClient()) {
+//            Vec3d posInBlock = hit.getPos();
+//            world.addParticle(ParticleTypes.FLAME, posInBlock.x, posInBlock.y, posInBlock.z, 0, 0, 0);
+//        } else {
+//            Optional<Direction> shape = getPipeShapeFromHitPos(hit, pos);
+//            if (shape.isPresent()) {
+//                Direction shapeDir = shape.get();
+//            }
+//        }
+//        stack.damage(1, player, EquipmentSlot.MAINHAND);
+//        return ItemActionResult.SUCCESS;
+//    }
 
     private static Optional<Direction> getPipeShapeFromHitPos(BlockHitResult hit, BlockPos pos) {
         return Optional.of(Direction.NORTH);

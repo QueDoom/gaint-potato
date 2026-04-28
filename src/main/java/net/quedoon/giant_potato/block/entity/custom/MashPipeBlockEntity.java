@@ -179,38 +179,41 @@ public class MashPipeBlockEntity extends BlockEntity {
     private void toggleOutput(MashPipeBlockEntity blockEntity, Direction direction) {
         assert blockEntity.getWorld() != null;
         BlockState state = blockEntity.getWorld().getBlockState(blockEntity.getPos());
-        Map<Integer, Integer> toggle = Map.of(
-                2, 4,
-                4, 2,
-                3, 5,
-                5, 3
-        );
         switch (direction) {
             case DOWN -> {
-                Integer intState = blockEntity.DOWN;
-                blockEntity.setSide(state, direction, toggle.get(intState));
+                int intState = blockEntity.DOWN;
+                blockEntity.setSide(state, direction, toggleState(intState));
             }
             case UP -> {
-                Integer intState = blockEntity.UP;
-                blockEntity.setSide(state, direction, toggle.get(intState));
+                int intState = blockEntity.UP;
+                blockEntity.setSide(state, direction, toggleState(intState));
             }
             case NORTH -> {
-                Integer intState = blockEntity.NORTH;
-                blockEntity.setSide(state, direction, toggle.get(intState));
+                int intState = blockEntity.NORTH;
+                blockEntity.setSide(state, direction, toggleState(intState));
             }
             case SOUTH -> {
-                Integer intState = blockEntity.SOUTH;
-                blockEntity.setSide(state, direction, toggle.get(intState));
+                int intState = blockEntity.SOUTH;
+                blockEntity.setSide(state, direction, toggleState(intState));
             }
             case EAST -> {
-                Integer intState = blockEntity.EAST;
-                blockEntity.setSide(state, direction, toggle.get(intState));
+                int intState = blockEntity.EAST;
+                blockEntity.setSide(state, direction, toggleState(intState));
             }
             case WEST -> {
-                Integer intState = blockEntity.WEST;
-                blockEntity.setSide(state, direction, toggle.get(intState));
+                int intState = blockEntity.WEST;
+                blockEntity.setSide(state, direction, toggleState(intState));
             }
         }
+    }
+
+    private int toggleState(int input) {
+        return switch (input) {
+            case 1 -> 1;
+            case 2, 3 -> 5;
+            case 4, 5 -> 2;
+            default -> 0;
+        };
     }
 
     public HashMap<Identifier, AbstractInteractionHitbox> getHitBoxes() {
@@ -246,14 +249,30 @@ public class MashPipeBlockEntity extends BlockEntity {
     }
 
     public void setPipeStates(World world, BlockPos pos) {
-        NORTH = world.getBlockState(pos.north()).isIn(ModTags.Blocks.MASH_PIPE_CONNECT_TO) ? 2 : 0;
-        SOUTH = world.getBlockState(pos.south()).isIn(ModTags.Blocks.MASH_PIPE_CONNECT_TO) ? 2 : 0;
-        EAST = world.getBlockState(pos.east()).isIn(ModTags.Blocks.MASH_PIPE_CONNECT_TO) ? 2 : 0;
-        WEST = world.getBlockState(pos.west()).isIn(ModTags.Blocks.MASH_PIPE_CONNECT_TO) ? 2 : 0;
-        UP = world.getBlockState(pos.up()).isIn(ModTags.Blocks.MASH_PIPE_CONNECT_TO) ? 2 : 0;
-        DOWN = world.getBlockState(pos.down()).isIn(ModTags.Blocks.MASH_PIPE_CONNECT_TO) ? 2 : 0;
+        if (!isLocked(NORTH)) {
+            NORTH = world.getBlockState(pos.north()).isIn(ModTags.Blocks.MASH_PIPE_CONNECT_TO) ? 2 : 0;
+        }
+        if (!isLocked(SOUTH)) {
+            SOUTH = world.getBlockState(pos.south()).isIn(ModTags.Blocks.MASH_PIPE_CONNECT_TO) ? 2 : 0;
+        }
+        if (!isLocked(EAST)) {
+            EAST = world.getBlockState(pos.east()).isIn(ModTags.Blocks.MASH_PIPE_CONNECT_TO) ? 2 : 0;
+        }
+        if (!isLocked(WEST)) {
+            WEST = world.getBlockState(pos.west()).isIn(ModTags.Blocks.MASH_PIPE_CONNECT_TO) ? 2 : 0;
+        }
+        if (!isLocked(UP)) {
+            UP = world.getBlockState(pos.up()).isIn(ModTags.Blocks.MASH_PIPE_CONNECT_TO) ? 2 : 0;
+        }
+        if (!isLocked(DOWN)) {
+            DOWN = world.getBlockState(pos.down()).isIn(ModTags.Blocks.MASH_PIPE_CONNECT_TO) ? 2 : 0;
+        }
         BlockState state = world.getBlockState(pos);
         updateSides(state, world, pos);
+    }
+
+    private boolean isLocked(int value) {
+        return value == 1 || value == 3 || value == 5;
     }
 
     public void setSide(BlockState state, Direction side, PipeShape.PipeShapes value) {
@@ -305,7 +324,7 @@ public class MashPipeBlockEntity extends BlockEntity {
     public void tick(World world, BlockPos pos, BlockState state) {
     }
 
-
+    
     @Override
     protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
         this.NORTH = nbt.getInt("north");
