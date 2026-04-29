@@ -29,7 +29,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
-public class CrusherBlockEntity extends AbstractMashMachineBlockEntity implements ExtendedScreenHandlerFactory<BlockPos>, ImplementedInventory {
+public class CrusherBlockEntity extends AbstractMashMachineBlockEntity<CrusherRecipe> {
     private int hasCrusherWheels = 0;
 
     public CrusherBlockEntity(BlockPos pos, BlockState state) {
