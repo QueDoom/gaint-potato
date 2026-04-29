@@ -31,7 +31,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
-public abstract class AbstractMachineBlockEntity<T extends Recipe<?>> extends BlockEntity implements ExtendedScreenHandlerFactory<BlockPos>, ImplementedInventory {
+public abstract class AbstractMachineBlockEntity<I extends RecipeInput, T extends Recipe<I>> extends BlockEntity implements ExtendedScreenHandlerFactory<BlockPos>, ImplementedInventory {
     protected final DefaultedList<ItemStack> inventory;
     protected boolean active = Boolean.FALSE;
 

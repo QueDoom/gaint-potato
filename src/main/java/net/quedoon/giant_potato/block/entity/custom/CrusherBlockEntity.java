@@ -76,7 +76,7 @@ public class CrusherBlockEntity extends AbstractMashMachineBlockEntity implement
 
     @Override
     protected ItemStack getRecipeOutput(RecipeEntry<CrusherRecipe> recipe) {
-        return getCurrentRecipe().get().value().output();
+        return recipe.value().output();
     }
 
 
