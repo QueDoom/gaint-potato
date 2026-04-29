@@ -8,7 +8,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
-import net.quedoon.giant_potato.block.entity.custom.MashPipeBlockEntity;
+import net.quedoon.giant_potato.block.entity.util.block_entity.pipe.AbstractPipeBlockEntity;
 import net.quedoon.giant_potato.util.ShapeUtil;
 import org.joml.Vector3f;
 
@@ -51,11 +51,11 @@ public abstract class AbstractInteractionHitbox {
         return debugColor;
     }
 
-    public ActionResult interact(MashPipeBlockEntity blockEntity, Vec3d actualPos, PlayerEntity player, Hand hand) {
-        return ActionResult.PASS;
+    public ActionResult interact(AbstractPipeBlockEntity blockEntity, Vec3d actualPos, PlayerEntity player, Hand hand) {
+        return ActionResult.SUCCESS;
     }
 
-    public ActionResult attack(MashPipeBlockEntity blockEntity, Vec3d actualPos, PlayerEntity player, ItemStack stack) {
+    public ActionResult attack(AbstractPipeBlockEntity blockEntity, Vec3d actualPos, PlayerEntity player, ItemStack stack) {
         return ActionResult.PASS;
     }
 }

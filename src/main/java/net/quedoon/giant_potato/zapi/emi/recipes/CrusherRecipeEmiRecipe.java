@@ -12,7 +12,7 @@ import net.quedoon.giant_potato.zapi.emi.GiantPotatoEmiPlugin;
 public class CrusherRecipeEmiRecipe extends BasicEmiRecipe {
 
     public CrusherRecipeEmiRecipe(RecipeEntry<CrusherRecipe> recipe) {
-        super(GiantPotatoEmiPlugin.CRUSHER_CATEGORY, recipe.id(), 70, 18);
+        super(GiantPotatoEmiPlugin.CRUSHER_CATEGORY, recipe.id(), 76, 18);
         this.inputs.add(EmiIngredient.of(recipe.value().getIngredients().get(0)));
         this.outputs.add(EmiStack.of(recipe.value().getResult(null)));
     }

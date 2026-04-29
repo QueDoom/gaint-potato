@@ -6,6 +6,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.quedoon.giant_potato.GiantPotato;
 import net.quedoon.giant_potato.block.ModBlocks;
+import net.quedoon.giant_potato.block.custom.MashPipeOutputBlock;
 import net.quedoon.giant_potato.block.entity.custom.*;
 
 
@@ -29,6 +30,10 @@ public class ModBlockEntities {
     public static final BlockEntityType<MashPipeBlockEntity> MASH_PIPE_BE =
             Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(GiantPotato.MOD_ID, "mash_pipe_be"),
                     BlockEntityType.Builder.create(MashPipeBlockEntity::new, ModBlocks.MASH_PIPE).build(null));
+
+    public static final BlockEntityType<MashPipeOutputBlockEntity> MASH_PIPE_OUTPUT_BE =
+            Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(GiantPotato.MOD_ID, "mash_pipe_output_be"),
+                    BlockEntityType.Builder.create(MashPipeOutputBlockEntity::new, ModBlocks.MASH_PIPE_OUTPUT).build(null));
 
 
 

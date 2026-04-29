@@ -15,6 +15,7 @@ import net.minecraft.util.Hand;
 import net.quedoon.giant_potato.block.ModBlocks;
 import net.quedoon.giant_potato.block.entity.ModBlockEntities;
 import net.quedoon.giant_potato.block.entity.custom.FoundryBlockEntity;
+import net.quedoon.giant_potato.block.entity.renderer.AbstractPipeBlockEntityRenderer;
 import net.quedoon.giant_potato.block.entity.renderer.MashTankBlockEntityRenderer;
 import net.quedoon.giant_potato.fluid.ModFluids;
 import net.quedoon.giant_potato.fluid.render.MashFluidRenderHandler;
@@ -35,6 +36,8 @@ public class GiantPotatoClient implements ClientModInitializer {
 
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MASH_TANK, RenderLayer.getCutout());
         BlockEntityRendererFactories.register(ModBlockEntities.MASH_TANK_BE, MashTankBlockEntityRenderer::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.MASH_PIPE_BE, AbstractPipeBlockEntityRenderer::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.MASH_PIPE_OUTPUT_BE, AbstractPipeBlockEntityRenderer::new);
 
         HandledScreens.register(ModScreenHandlers.FOUNDRY_SCREEN_HANDLER, FoundryScreen::new);
         HandledScreens.register(ModScreenHandlers.CRUSHER_SCREEN_HANDLER, CrusherScreen::new);

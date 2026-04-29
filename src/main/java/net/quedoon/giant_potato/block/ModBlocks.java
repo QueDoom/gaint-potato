@@ -23,6 +23,9 @@ public class ModBlocks {
     public static final Block MASH_PIPE = registerBlock("mash_pipe",
             new MashPipeBlock(AbstractBlock.Settings.create().sounds(BlockSoundGroup.WOOD)
                     .strength(1.0F).resistance(1.0F).nonOpaque()));
+    public static final Block MASH_PIPE_OUTPUT = registerBlock("mash_pipe_output",
+            new MashPipeOutputBlock(AbstractBlock.Settings.create().sounds(BlockSoundGroup.WOOD)
+                    .strength(1.0F).resistance(1.0F).nonOpaque()));
     public static final Block SMOOTH_POTATOES = registerBlock("smooth_potatoes",
             new Block(AbstractBlock.Settings.create().sounds(BlockSoundGroup.STONE)
                     .strength(3.0F).resistance(3.0F).requiresTool()));

@@ -77,13 +77,25 @@ public class ModBlockHitboxes {
     }
 
     public static class BoxPipe {
-        public static Vec3d centerFrom() {
-            //return Block.createCuboidShape(5.5, 5.5, 5.5, 10.5, 10.5, 10.5);
-            return new Vec3d(5.5, 5.5, 5.5);
+        public static Vec3d dirFrom(Direction direction) {
+            return switch (direction) {
+                case DOWN -> downFrom();
+                case UP -> upFrom();
+                case NORTH -> northFrom();
+                case SOUTH -> southFrom();
+                case WEST -> westFrom();
+                case EAST -> eastFrom();
+            };
         }
-        public static Vec3d centerTo() {
-            //return Block.createCuboidShape(5.5, 5.5, 5.5, 10.5, 10.5, 10.5);
-            return new Vec3d(10.5, 10.5, 10.5);
+        public static Vec3d dirTo(Direction direction) {
+            return switch (direction) {
+                case DOWN -> downTo();
+                case UP -> upTo();
+                case NORTH -> northTo();
+                case SOUTH -> southTo();
+                case WEST -> westTo();
+                case EAST -> eastTo();
+            };
         }
         public static Vec3d northFrom() {
             //return Block.createCuboidShape(5.5, 5.5, 0, 10.5, 10.5, 5.5);
@@ -103,7 +115,7 @@ public class ModBlockHitboxes {
         }
         public static Vec3d eastFrom() {
             //return Block.createCuboidShape(10.5, 5.5, 5.5, 16, 10.5, 10.5);
-            return new Vec3d(0.5, 5.5, 5.5);
+            return new Vec3d(10.5, 5.5, 5.5);
         }
         public static Vec3d eastTo() {
             //return Block.createCuboidShape(10.5, 5.5, 5.5, 16, 10.5, 10.5);

@@ -53,7 +53,7 @@ public class ModLangGenerator extends FabricLanguageProvider {
         // GUI
         translationBuilder.add("gui.giant_potato.foundry", "Alloying");
         translationBuilder.add("gui.giant_potato.crusher", "Crushing");
-        translationBuilder.add("recipeCatagory.giant_potato.crusher_workstation", "Crushing");
+        translationBuilder.add("emi.category.giant_potato.crusher_workstation", "Crushing");
         translationBuilder.add("gui.giant_potato.mash_tank", "Mash Tank");
 
         // Jade

@@ -27,6 +27,10 @@ public class ModTags {
 
             public static final TagKey<Block> MIDAS_HAND_WORKS_ON = createTag("midas_hand_works_on");
 
+            public static final TagKey<Block> PIPES = createTag("pipes");
+            public static final TagKey<Block> MASH_PIPES = createTag("mash_pipes");
+            public static final TagKey<Block> MASH_MACHINES = createTag("mash_machines");
+
 
         private static TagKey<Block> createTag(String name) {
             return TagKey.of(RegistryKeys.BLOCK, Identifier.of(GiantPotato.MOD_ID, name));
@@ -40,6 +44,8 @@ public class ModTags {
 
         public static final TagKey<Item> MASH_BUCKETS = createTag("mash_buckets");
         public static final TagKey<Item> POISONOUS_MASH_BUCKETS = createTag("poisonous_mash_buckets");
+
+        public static final TagKey<Item> WRENCHES = createTag("wrenches");
 
 
         private static TagKey<Item> createTag(String name) {

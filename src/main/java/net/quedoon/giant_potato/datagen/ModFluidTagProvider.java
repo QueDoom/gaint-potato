@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.FluidTags;
 import net.quedoon.giant_potato.fluid.ModFluids;
+import net.quedoon.giant_potato.item.ModItems;
 import net.quedoon.giant_potato.util.ModTags;
 
 import java.util.concurrent.CompletableFuture;
@@ -26,8 +27,5 @@ public class ModFluidTagProvider extends FabricTagProvider.FluidTagProvider {
                 .add(ModFluids.POISONOUS_MASH).add(ModFluids.POISONOUS_MASH_FLOWING_UNUSED);
         this.getOrCreateTagBuilder(ModTags.Fluid.MASH_FLUIDS)
                 .addTag(ModTags.Fluid.MASH).addTag(ModTags.Fluid.POISONOUS_MASH);
-
-
-
     }
 }
