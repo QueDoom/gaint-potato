@@ -31,7 +31,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
-public abstract class AbstractMachineBlockEntity<I extends RecipeInput, T extends Recipe<I>> extends BlockEntity implements ExtendedScreenHandlerFactory<BlockPos>, ImplementedInventory {
+public abstract class AbstractMachineBlockEntity<T extends Recipe<?>> extends BlockEntity implements ExtendedScreenHandlerFactory<BlockPos>, ImplementedInventory {
     protected final DefaultedList<ItemStack> inventory;
     protected boolean active = Boolean.FALSE;
 
@@ -46,9 +46,7 @@ public abstract class AbstractMachineBlockEntity<I extends RecipeInput, T extend
         this.inventory = DefaultedList.ofSize(inventorySize, ItemStack.EMPTY);
     }
 
-    public static int getMaxProgress() {
-        return 0;
-    }
+    public abstract int getMaxProgress();
 
     @Override
     public BlockPos getScreenOpeningData(ServerPlayerEntity player) {
@@ -92,19 +90,12 @@ public abstract class AbstractMachineBlockEntity<I extends RecipeInput, T extend
 
     public abstract void tick(World world, BlockPos pos, BlockState state);
 
-    protected void craftItem() {
-        ItemStack output = getRecipeOutput(getCurrentRecipe().get());
 
-        this.removeStack(INPUT_SLOT, 1);
-        this.setStack(OUTPUT_SLOT, new ItemStack(output.getItem(),
-                this.getStack(OUTPUT_SLOT).getCount() + output.getCount()));
-    }
 
     protected void resetProgress() {
         this.progress = 0;
         this.maxProgress = getMaxProgress();
     }
-
 
     protected boolean hasCraftingFinished() {
         return this.progress >= this.maxProgress;
@@ -119,6 +110,18 @@ public abstract class AbstractMachineBlockEntity<I extends RecipeInput, T extend
                 this.getStack(OUTPUT_SLOT).getCount() < this.getStack(OUTPUT_SLOT).getMaxCount();
     }
 
+//    protected abstract void craftItem();
+
+    protected void craftItem() {
+        ItemStack output = getRecipeOutput();
+
+        this.removeStack(INPUT_SLOT, 1);
+        this.setStack(OUTPUT_SLOT, new ItemStack(output.getItem(),
+                this.getStack(OUTPUT_SLOT).getCount() + output.getCount()));
+    }
+
+//    protected abstract boolean hasRecipe();
+
     protected boolean hasRecipe() {
         Optional<RecipeEntry<T>> recipe = getCurrentRecipe();
         if (recipe.isEmpty()) {
@@ -130,7 +133,7 @@ public abstract class AbstractMachineBlockEntity<I extends RecipeInput, T extend
     }
 
     protected abstract Optional<RecipeEntry<T>> getCurrentRecipe();
-    protected abstract ItemStack getRecipeOutput(RecipeEntry<T> recipe);
+    protected abstract ItemStack getRecipeOutput();
 
 
     protected boolean canInsertItemIntoOutputSlot(ItemStack output) {

@@ -23,10 +23,13 @@ import net.quedoon.giant_potato.block.entity.ModBlockEntities;
 import net.quedoon.giant_potato.block.entity.util.block_entity.mashines.AbstractMashMachineBlockEntity;
 import net.quedoon.giant_potato.recipe.CrusherRecipe;
 import net.quedoon.giant_potato.recipe.CrusherRecipeInput;
+import net.quedoon.giant_potato.recipe.FoundryRecipeInput;
 import net.quedoon.giant_potato.recipe.ModRecipes;
 import net.quedoon.giant_potato.screen.custom.CrusherScreenHandler;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class CrusherBlockEntity extends AbstractMashMachineBlockEntity<CrusherRecipe> {
@@ -48,10 +51,21 @@ public class CrusherBlockEntity extends AbstractMashMachineBlockEntity<CrusherRe
 
     // // // // // // // // //
 
+    @Override
+    public int getMaxProgress() {
+        return 72;
+    }
+
     public void tick(World world, BlockPos pos, BlockState state) {
         this.hasCrusherWheels = getCrusherWheels(world, pos, state);
+        GiantPotato.LOGGER.info("Crusher wheels: {}", this.hasCrusherWheels);
         if (hasCrusherWheels < 2) return;
-        if (hasRecipe() && canInsertIntoOutputSlot()) {
+        GiantPotato.LOGGER.info("Passed");
+        boolean hasRec = hasRecipe();
+        GiantPotato.LOGGER.info("Has Recipe: {}", hasRec);
+        GiantPotato.LOGGER.info("Can insert: {}", canInsertIntoOutputSlot());
+        if (hasRec && canInsertIntoOutputSlot()) {
+            GiantPotato.LOGGER.info("Passed has recipe and insert to output");
             setCrusherWheelState(world, pos, state, true);
             increaseCraftingProgress();
             this.active = true;
@@ -59,6 +73,7 @@ public class CrusherBlockEntity extends AbstractMashMachineBlockEntity<CrusherRe
 
             if (hasCraftingFinished()) {
                 craftItem();
+                GiantPotato.LOGGER.info("HOW DID YOU GET HERE?");
                 resetProgress();
             }
         } else {
@@ -69,14 +84,34 @@ public class CrusherBlockEntity extends AbstractMashMachineBlockEntity<CrusherRe
         }
     }
 
-    @Override
+
+//    protected void craftItem() {
+//        ItemStack output = getCurrentRecipe().get().value().output();
+//
+//        this.removeStack(INPUT_SLOT, 1);
+//        this.setStack(OUTPUT_SLOT, new ItemStack(output.getItem(),
+//                this.getStack(OUTPUT_SLOT).getCount() + output.getCount()));
+//    }
+//
+//
+//    protected boolean hasRecipe() {
+//        Optional<RecipeEntry<CrusherRecipe>> recipe = getCurrentRecipe();
+//        if (recipe.isEmpty()) {
+//            return false;
+//        }
+//
+//        ItemStack output = recipe.get().value().getResult(null);
+//        return canInsertAmountIntoOutputSlot(output.getCount()) && canInsertItemIntoOutputSlot(output);
+//    }
+
     protected Optional<RecipeEntry<CrusherRecipe>> getCurrentRecipe() {
-        return Optional.empty();
+        return this.getWorld().getRecipeManager()
+                .getFirstMatch(ModRecipes.CRUSHER_TYPE, new CrusherRecipeInput(inventory.get(0)), this.getWorld());
     }
 
     @Override
-    protected ItemStack getRecipeOutput(RecipeEntry<CrusherRecipe> recipe) {
-        return recipe.value().output();
+    protected ItemStack getRecipeOutput() {
+        return getCurrentRecipe().get().value().output();
     }
 
 

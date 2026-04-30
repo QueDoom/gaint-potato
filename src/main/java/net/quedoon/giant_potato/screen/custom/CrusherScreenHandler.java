@@ -23,7 +23,7 @@ public class CrusherScreenHandler extends ScreenHandler {
     private final CrusherBlockEntity blockEntity;
 
     public CrusherScreenHandler(int syncId, PlayerInventory inventory, BlockPos pos) {
-        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(pos), new ArrayPropertyDelegate(3));
+        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(pos), new ArrayPropertyDelegate(4));
     }
 
     public CrusherScreenHandler(int syncId, PlayerInventory playerInventory,
@@ -58,7 +58,7 @@ public class CrusherScreenHandler extends ScreenHandler {
 
     public int getScaledMashDisplay() {
         int mash = this.propertyDelegate.get(2);// Mash
-        int maxMash = this.blockEntity.getMaxMash();
+        int maxMash = this.propertyDelegate.get(3);
         int mashDisplayPixelSize = 12; // This is the width in pixels of your bar
 
         return mash != 0 ? mash * mashDisplayPixelSize / maxMash : 0;

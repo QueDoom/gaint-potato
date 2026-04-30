@@ -7,11 +7,12 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.recipe.Recipe;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.util.math.BlockPos;
 
-public abstract class AbstractMashMachineBlockEntity extends AbstractMachineBlockEntity {
+public abstract class AbstractMashMachineBlockEntity<T extends Recipe<?>> extends AbstractMachineBlockEntity<T> {
 
     private int mash = 0;
     private final int MAX_MASH;

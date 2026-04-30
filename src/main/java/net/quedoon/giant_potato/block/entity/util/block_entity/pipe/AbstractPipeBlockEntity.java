@@ -76,7 +76,7 @@ public abstract class AbstractPipeBlockEntity extends BlockEntity {
         }
     }
 
-    protected ActionResult attemptInteraction(PlayerEntity player, Hand hand) {
+    public ActionResult attemptInteraction(PlayerEntity player, Hand hand) {
         BlockState state = this.getCachedState();
         if (!state.isIn(ModTags.Blocks.PIPES)) return ActionResult.FAIL;
         Pair<AbstractInteractionHitbox, Vec3d> targetedHitbox = getTargetedHitbox(player);
@@ -109,7 +109,7 @@ public abstract class AbstractPipeBlockEntity extends BlockEntity {
         return closestInteraction == null ? null : new Pair<>(closestInteraction, closestInteractionHitPos);
     }
 
-    protected void toggleSideFromHitbox(AbstractPipeBlockEntity blockEntity, Vec3d actualPos, PlayerEntity player, Hand hand, Direction side) {
+    public void toggleSideFromHitbox(AbstractPipeBlockEntity blockEntity, Vec3d actualPos, PlayerEntity player, Hand hand, Direction side) {
         BlockPos pos = blockEntity.getPos();
         boolean isServer = player.getWorld() instanceof ServerWorld;
         if (isServer) {
