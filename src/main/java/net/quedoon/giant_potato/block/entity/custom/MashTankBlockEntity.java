@@ -25,7 +25,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.quedoon.giant_potato.block.entity.ImplementedInventory;
+import net.quedoon.giant_potato.block.entity.util.ImplementedInventory;
 import net.quedoon.giant_potato.block.entity.ModBlockEntities;
 import net.quedoon.giant_potato.block.entity.fluid.FluidUtils;
 import net.quedoon.giant_potato.fluid.ModFluids;

@@ -1,4 +1,4 @@
-package net.quedoon.giant_potato.util.gecko.model;
+package net.quedoon.giant_potato.zapi.gecko.model;
 
 import net.minecraft.util.Identifier;
 import net.quedoon.giant_potato.block.item.FoundryBlockItem;

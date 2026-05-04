@@ -15,6 +15,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.quedoon.giant_potato.GiantPotato;
 import net.quedoon.giant_potato.block.entity.data.hitbox.AbstractPipeHitbox;
 import net.quedoon.giant_potato.block.entity.util.AbstractInteractionHitbox;
 import net.quedoon.giant_potato.block.entity.util.block.AbstractPipeBlock;
@@ -205,8 +206,32 @@ public abstract class AbstractPipeBlockEntity extends BlockEntity {
         return output;
     }
 
+    public ArrayList<Direction> getOutputDirections(AbstractPipeBlockEntity blockEntity) {
+        ArrayList<Direction> output = new ArrayList<>();
+        if (isOutput(NORTH)) output.add(Direction.NORTH);
+        if (isOutput(SOUTH)) output.add(Direction.SOUTH);
+        if (isOutput(EAST)) output.add(Direction.EAST);
+        if (isOutput(WEST)) output.add(Direction.WEST);
+        if (isOutput(UP)) output.add(Direction.UP);
+        if (isOutput(DOWN)) output.add(Direction.DOWN);
+        return output;
+    }
+
+    public ArrayList<Direction> getNonOutputConnectedDirections(AbstractPipeBlockEntity blockEntity) {
+        ArrayList<Direction> output = new ArrayList<>();
+        if (!isOutput(NORTH) && isConnected(NORTH)) output.add(Direction.NORTH);
+        if (!isOutput(SOUTH) && isConnected(SOUTH)) output.add(Direction.SOUTH);
+        if (!isOutput(EAST) && isConnected(EAST)) output.add(Direction.EAST);
+        if (!isOutput(WEST) && isConnected(WEST)) output.add(Direction.WEST);
+        if (!isOutput(UP) && isConnected(UP)) output.add(Direction.UP);
+        if (!isOutput(DOWN) && isConnected(DOWN)) output.add(Direction.DOWN);
+        return output;
+    }
+
     public static boolean isUnlocked(int value) {
-        return value != 1 || value != 3 || value != 5;
+        boolean isit = value != 1 && value != 3 && value != 5;
+        GiantPotato.LOGGER.info("{}", isit);
+        return isit;
     }
     public static boolean isConnected(int value) {
         return value >= 2 && value <= 5;

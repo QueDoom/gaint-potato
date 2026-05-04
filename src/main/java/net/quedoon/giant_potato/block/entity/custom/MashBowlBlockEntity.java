@@ -9,25 +9,19 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.Entity;
 import net.minecraft.fluid.Fluid;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.particle.BlockStateParticleEffect;
-import net.minecraft.particle.ParticleType;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.quedoon.giant_potato.block.ModBlocks;
-import net.quedoon.giant_potato.block.entity.ImplementedInventory;
-import net.quedoon.giant_potato.block.entity.fluid.FluidUtils;
+import net.quedoon.giant_potato.block.entity.util.ImplementedInventory;
 import net.quedoon.giant_potato.fluid.ModFluids;
 import net.quedoon.giant_potato.util.ModTags;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Random;
 import java.util.random.RandomGenerator;
 
 public class MashBowlBlockEntity extends BlockEntity implements ImplementedInventory {

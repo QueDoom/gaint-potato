@@ -11,6 +11,7 @@ import net.minecraft.recipe.Recipe;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.util.math.BlockPos;
+import net.quedoon.giant_potato.fluid.ModFluids;
 
 public abstract class AbstractMashMachineBlockEntity<T extends Recipe<?>> extends AbstractMachineBlockEntity<T> {
 
@@ -67,6 +68,11 @@ public abstract class AbstractMashMachineBlockEntity<T extends Recipe<?>> extend
         protected void onFinalCommit() {
             markDirty();
             getWorld().updateListeners(pos, getCachedState(), getCachedState(), 3);
+        }
+
+        @Override
+        protected boolean canInsert(FluidVariant variant) {
+            return variant.isOf(ModFluids.MASH) || variant.isOf(ModFluids.POISONOUS_MASH);
         }
     };
     public final SingleVariantStorage<FluidVariant> fluidStorageHalf = new SingleVariantStorage<FluidVariant>() {

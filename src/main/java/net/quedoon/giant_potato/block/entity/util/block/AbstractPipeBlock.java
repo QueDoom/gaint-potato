@@ -73,8 +73,8 @@ public abstract class AbstractPipeBlock extends BlockWithEntity {
         PipeShape.PipeShapes east = world.getBlockState(pos.east()).isIn(ModTags.Blocks.MASH_PIPE_CONNECT_TO) ? PipeShape.PipeShapes.TRUE : PipeShape.PipeShapes.NONE;
         PipeShape.PipeShapes west = world.getBlockState(pos.west()).isIn(ModTags.Blocks.MASH_PIPE_CONNECT_TO) ? PipeShape.PipeShapes.TRUE : PipeShape.PipeShapes.NONE;
         PipeShape.PipeShapes up = world.getBlockState(pos.up()).isIn(ModTags.Blocks.MASH_PIPE_CONNECT_TO) ? PipeShape.PipeShapes.TRUE : PipeShape.PipeShapes.NONE;
-
         PipeShape.PipeShapes down = world.getBlockState(pos.down()).isIn(ModTags.Blocks.MASH_PIPE_CONNECT_TO) ? PipeShape.PipeShapes.TRUE : PipeShape.PipeShapes.NONE;
+
         BlockEntity be = world.getBlockEntity(pos);
         if (!(be instanceof AbstractPipeBlockEntity blockEntity)) return this.getDefaultState();
         blockEntity.initializeSides(north, south, east, west, up, down);

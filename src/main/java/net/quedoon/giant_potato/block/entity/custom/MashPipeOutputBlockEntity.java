@@ -21,25 +21,25 @@ public class MashPipeOutputBlockEntity extends AbstractMashPipeBlockEntity {
         super(ModBlockEntities.MASH_PIPE_OUTPUT_BE, pos, state, (AbstractPipeBlock) ModBlocks.MASH_PIPE, (AbstractPipeBlock) ModBlocks.MASH_PIPE_OUTPUT);
     }
 
-//    public void tick(World world, BlockPos pos, BlockState state) {
-//        if (this.cooldown < 5) {
-//            this.cooldown += 1;
-//        } else {
-//            this.cooldown = 0;
-//            attemptToFillInputs(world, pos, state);
-//        }
-//    }
+    public void tick(World world, BlockPos pos, BlockState state) {
+        if (this.cooldown < 5) {
+            this.cooldown += 1;
+        } else {
+            this.cooldown = 0;
+            attemptToFillInputs(world, pos, state);
+        }
+    }
 
-//    public boolean attemptToFillInputs(World world, BlockPos pos, BlockState state) {
-//        for (Direction connectedDirection : getConnectedDirections(this)) {
-//            BlockState pullFrom = world.getBlockState(pos.offset(connectedDirection));
-//            if(pullFrom.isIn(ModTags.Blocks.MASH_MACHINES)) {
-//                for (BlockPos input : findInputs(world, pos)) {
-//
-//                }
-//            }
-//        }
-//    }
+    public boolean attemptToFillInputs(World world, BlockPos pos, BlockState state) {
+        for (Direction outputDirection : getOutputDirections(this)) {
+            BlockState pullFrom = world.getBlockState(pos.offset(outputDirection));
+            if(pullFrom.isIn(ModTags.Blocks.MASH_MACHINES)) {
+                for (BlockPos input : findInputs(world, pos)) {
+
+                }
+            }
+        }
+    }
 
     public static Collection<BlockPos> findInputs(World world, BlockPos pos) {
         //positions that are already processed

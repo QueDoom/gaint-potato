@@ -1,42 +1,33 @@
 package net.quedoon.giant_potato.block.entity.custom;
 
-import net.fabricmc.fabric.api.attachment.v1.AttachmentType;
-import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeEntry;
-import net.minecraft.recipe.input.RecipeInput;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.state.property.Properties;
 import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import net.quedoon.giant_potato.GiantPotato;
 import net.quedoon.giant_potato.block.ModBlocks;
-import net.quedoon.giant_potato.block.entity.ImplementedInventory;
 import net.quedoon.giant_potato.block.entity.ModBlockEntities;
 import net.quedoon.giant_potato.block.entity.util.block_entity.mashines.AbstractMashMachineBlockEntity;
 import net.quedoon.giant_potato.recipe.CrusherRecipe;
 import net.quedoon.giant_potato.recipe.CrusherRecipeInput;
-import net.quedoon.giant_potato.recipe.FoundryRecipeInput;
 import net.quedoon.giant_potato.recipe.ModRecipes;
 import net.quedoon.giant_potato.screen.custom.CrusherScreenHandler;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 public class CrusherBlockEntity extends AbstractMashMachineBlockEntity<CrusherRecipe> {
-    private int hasCrusherWheels = 0;
-
     public CrusherBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.CRUSHER_BE, pos, state, 2, 128);
+        super(ModBlockEntities.CRUSHER_BE, pos, state, 2, 8000);
     }
 
     @Override
@@ -57,29 +48,33 @@ public class CrusherBlockEntity extends AbstractMashMachineBlockEntity<CrusherRe
     }
 
     public void tick(World world, BlockPos pos, BlockState state) {
-        this.hasCrusherWheels = getCrusherWheels(world, pos, state);
-        GiantPotato.LOGGER.info("Crusher wheels: {}", this.hasCrusherWheels);
+        if (!(world.isClient())) return;
+        GiantPotato.LOGGER.info("We are in the server!");
+
+        int hasCrusherWheels = getCrusherWheels(world, pos, state);
         if (hasCrusherWheels < 2) return;
-        GiantPotato.LOGGER.info("Passed");
+        GiantPotato.LOGGER.info("Wheels are all here: {}", hasCrusherWheels);
+
         boolean hasRec = hasRecipe();
-        GiantPotato.LOGGER.info("Has Recipe: {}", hasRec);
-        GiantPotato.LOGGER.info("Can insert: {}", canInsertIntoOutputSlot());
-        if (hasRec && canInsertIntoOutputSlot()) {
-            GiantPotato.LOGGER.info("Passed has recipe and insert to output");
+        GiantPotato.LOGGER.info("Has recipe = {}", hasRec);
+        GiantPotato.LOGGER.info("Can instert? " + (canInsertIntoOutputSlot() ? "yes" : "no"));
+        if (hasRecipe() && canInsertIntoOutputSlot()) {
+            GiantPotato.LOGGER.info("Got it!");
             setCrusherWheelState(world, pos, state, true);
             increaseCraftingProgress();
             this.active = true;
             markDirty(world, pos, state);
 
             if (hasCraftingFinished()) {
+                GiantPotato.LOGGER.info("Crafted");
                 craftItem();
-                GiantPotato.LOGGER.info("HOW DID YOU GET HERE?");
                 resetProgress();
             }
         } else {
             resetProgress();
-            this.active = false;
+
             setCrusherWheelState(world, pos, state, false);
+            this.active = false;
             markDirty(world, pos, state);
         }
     }
